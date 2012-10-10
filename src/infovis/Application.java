@@ -1,5 +1,6 @@
 package infovis;
 
+import infovis.gui.DateSlider;
 import infovis.gui.ScatterPlot;
 import infovis.gui.VisPanel;
 import prefuse.Constants;
@@ -34,6 +35,7 @@ import prefuse.visual.VisualItem;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.io.File;
 import java.io.IOException;
@@ -71,15 +73,15 @@ public class Application {
         vis.render();
 
 
-        JSlider dateSlider = new JSlider();
-        dateSlider.setMinimum(1);
-        dateSlider.setMinimum(10);
+        DateSlider dateSlider = new DateSlider();
 
         //JToolBar toolbar = getEncodingToolbar(sp, xfield, yfield, sfield);
 
         //JFrame frame = new JFrame("p r e f u s e  |  s c a t t e r");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //frame.getContentPane().add(toolbar, BorderLayout.NORTH);
+        frame.getContentPane().setLayout(new BorderLayout());
+        frame.getContentPane().add(dateSlider, BorderLayout.NORTH);
         frame.getContentPane().add(vis, BorderLayout.CENTER);
 
         frame.pack();

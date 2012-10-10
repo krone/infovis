@@ -20,6 +20,7 @@ import prefuse.Visualization;
 import prefuse.action.ActionList;
 import prefuse.action.RepaintAction;
 import prefuse.action.assignment.ColorAction;
+import prefuse.action.assignment.DataColorAction;
 import prefuse.action.assignment.DataShapeAction;
 import prefuse.action.assignment.ShapeAction;
 import prefuse.action.layout.AxisLayout;
@@ -80,7 +81,12 @@ public class ScatterPlot extends Display {
         m_vis.putAction("color", color);
 
 
-        ColorAction fill = new ColorAction(group, VisualItem.FILLCOLOR, ColorLib.rgb(255,0,0));
+        //ColorAction fill = new ColorAction(group, VisualItem.FILLCOLOR, ColorLib.rgb(255,0,0));
+        // colour palette for nominal data type
+        int[] palette = new int[]{ColorLib.rgb(0, 255, 0), ColorLib.rgb(255, 0, 0), ColorLib.rgb(0, 0, 255)};
+        /* ColorLib.rgb converts the colour values to integers */
+        // map data to colours in the palette
+        DataColorAction fill = new DataColorAction(group, "ID", Constants.NOMINAL, VisualItem.FILLCOLOR, palette);
         m_vis.putAction("color", fill);
 
         //DataShapeAction shape = new DataShapeAction(group, sfield);
