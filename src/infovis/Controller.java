@@ -27,7 +27,7 @@ public class Controller {
 
 
         // read in and preprocess data
-        Table data = IO.readCsv("data/Microblogs_test.csv");
+        Table data = IO.readCsv("data/Microblogs.csv");
         data = IO.preprocessPosts(data, 1826, 929);
         String query = "createdDate = '5/13/2011' AND isSick = 1";
         Predicate myPredicate = (Predicate) ExpressionParser.parse(query);

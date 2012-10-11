@@ -74,8 +74,8 @@ public class ScatterPlot extends Display {
         int[] palette = new int[]{ColorLib.rgb(0, 255, 0), ColorLib.rgb(255, 0, 0), ColorLib.rgb(0, 0, 255)};
         /* ColorLib.rgb converts the colour values to integers */
         // map data to colours in the palette
-        DataColorAction fill = new DataColorAction(group, "ID", Constants.NOMINAL, VisualItem.FILLCOLOR, palette);
-        DataColorAction color = new DataColorAction(group, "ID", Constants.NOMINAL, VisualItem.STROKECOLOR, palette);
+        DataColorAction fill = new DataColorAction(group, "type", Constants.NOMINAL, VisualItem.FILLCOLOR, palette);
+        DataColorAction color = new DataColorAction(group, "type", Constants.NOMINAL, VisualItem.STROKECOLOR, palette);
         m_vis.putAction("color", fill);
         m_vis.putAction("color", color);
 
