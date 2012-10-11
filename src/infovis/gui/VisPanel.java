@@ -54,9 +54,9 @@ public class VisPanel extends JPanel
 
     public void setData(Table data)
     {
-        ZoomControl zoom = new ZoomControl(Control.RIGHT_MOUSE_BUTTON);
+        //ZoomControl zoom = new ZoomControl(Control.RIGHT_MOUSE_BUTTON);
         _sp = new ScatterPlot(data, "x", "y");
-        _sp.addControlListener(zoom);
+        //_sp.addControlListener(zoom);
         _sp.setPointSize(5);
         _sp.setSize(1800, 930);
     }
@@ -69,6 +69,15 @@ public class VisPanel extends JPanel
     public void render()
     {
         this.add(_sp);
+    }
+
+    public void repaint()
+    {
+        if(_sp!=null)
+        {
+            _sp.run();
+        }
+
     }
 
 

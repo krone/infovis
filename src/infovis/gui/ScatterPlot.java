@@ -77,8 +77,8 @@ public class ScatterPlot extends Display {
                 Constants.Y_AXIS, VisiblePredicate.TRUE);
         m_vis.putAction("y", y_axis);
 
-        ColorAction color = new ColorAction(group, VisualItem.STROKECOLOR, ColorLib.rgb(255,0,0));
-        m_vis.putAction("color", color);
+        //ColorAction color = new ColorAction(group, VisualItem.STROKECOLOR, ColorLib.rgb(255,0,0));
+
 
 
         //ColorAction fill = new ColorAction(group, VisualItem.FILLCOLOR, ColorLib.rgb(255,0,0));
@@ -87,7 +87,9 @@ public class ScatterPlot extends Display {
         /* ColorLib.rgb converts the colour values to integers */
         // map data to colours in the palette
         DataColorAction fill = new DataColorAction(group, "ID", Constants.NOMINAL, VisualItem.FILLCOLOR, palette);
+        DataColorAction color = new DataColorAction(group, "ID", Constants.NOMINAL, VisualItem.STROKECOLOR, palette);
         m_vis.putAction("color", fill);
+        m_vis.putAction("color", color);
 
         //DataShapeAction shape = new DataShapeAction(group, sfield);
         ShapeAction shape = new ShapeAction();
@@ -111,10 +113,10 @@ public class ScatterPlot extends Display {
         setSize(1280,700);
         setHighQuality(true);
         //setBackground(Color.BLACK);
-        setBackgroundImage("data/Vastopolis_Map_small.png", false, false);
+        setBackgroundImage("data/Vastopolis_Map_small.jpg", false, false);
         // add movement controls
-        addControlListener(new ZoomControl());
-        addControlListener(new PanControl());
+        //addControlListener(new ZoomControl());
+        //addControlListener(new PanControl());
 
         ToolTipControl ttc = new ToolTipControl(new String[] {xfield,yfield,sfield});
         //BetterTooltipControl ttc = new BetterTooltipControl("URL=%s,Size=%s,Links=%s",new String[] {xfield,yfield,sfield});
@@ -128,6 +130,11 @@ public class ScatterPlot extends Display {
 
     }
 
+    public void run()
+    {
+        m_vis.run("draw");
+    }
+
     public int getPointSize() {
         return m_shapeR.getBaseSize();
     }
@@ -136,6 +143,8 @@ public class ScatterPlot extends Display {
         m_shapeR.setBaseSize(size);
         repaint();
     }
+
+
 
     // ------------------------------------------------------------------------
 

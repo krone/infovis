@@ -59,12 +59,19 @@ public class Application {
         frame.setSize(800,600);
 
         // read in and preprocess data
-        Table data = IO.readCsv("data/Microblogs_test.csv");
+        Table data = IO.readCsv("data/Microblogs.csv");
+
+
         data = IO.preprocessPosts(data, 1826, 929);
 
 
         //String query = "text like %flu% or text like '%sick%' or text like '%cough%'";
-        String query = "isSick = 1";
+        //String query = "isSick = 1";
+        //String query = "test = 'moo'";
+        String query = "createdDate = '5/13/2011' AND isSick = 1";
+
+
+
         Predicate myPredicate = (Predicate) ExpressionParser.parse(query);
 
         VisPanel vis = new VisPanel();
@@ -73,7 +80,7 @@ public class Application {
         vis.render();
 
 
-        DateSlider dateSlider = new DateSlider();
+        DateSlider dateSlider = new DateSlider(vis);
 
         //JToolBar toolbar = getEncodingToolbar(sp, xfield, yfield, sfield);
 

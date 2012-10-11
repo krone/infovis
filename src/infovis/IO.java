@@ -50,14 +50,12 @@ public class IO
         data.addColumn("x", Integer.class);
         data.addColumn("y", Integer.class);
         data.addColumn("isSick", Integer.class);
-
+        data.addColumn("createdDate", String.class);
 
         float maxLeft = 93.5673f;
         float maxUp = 42.3017f;
         float scale_x = (float)0.375/w;
         float scale_y = (float)0.1408/h;
-        System.out.println(scale_x);
-        System.out.println(scale_y);
 
         // iterate through each tuple in the data
         Iterator itr = data.tuples();
@@ -71,11 +69,13 @@ public class IO
 
             String text = el.getString("text");
             el.set("isSick", 0);
-            if(text.contains("flu") || text.contains("sick") || text.contains("pneumonia") || text.contains("cough"))
+            if(text.contains("flu") || text.contains("sick") || text.contains("pneumonia") || text.contains("cough") || text.contains("fever") || text.contains("breath") || text.contains("headache") || text.contains("chill")|| text.contains("cold"))
             {
                 el.set("isSick", 1);
             }
-
+            String date = el.getString("Created_at");
+            String[] c = date.split(" ");
+            el.set("createdDate", c[0].trim());
 
             float latitude = Float.parseFloat(v[0]);
             float longitude = Float.parseFloat(v[1]);
@@ -88,6 +88,7 @@ public class IO
 
             int yVal = (int)Math.round((maxUp - latitude)/scale_y);
             el.set("y", yVal);
+
         }
         return data;
     }
