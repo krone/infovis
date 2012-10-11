@@ -66,7 +66,7 @@
       <file leaf-file-name="Application.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infovis/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="34" column="42" selection-start="706" selection-end="706" vertical-scroll-proportion="0.0">
+            <state line="35" column="44" selection-start="708" selection-end="708" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -83,10 +83,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="WeatherArrow.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="WeatherArrow.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infovis/gui/WeatherArrow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="26" column="53" selection-start="611" selection-end="611" vertical-scroll-proportion="0.4003268">
+            <state line="44" column="42" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -97,7 +97,7 @@
       <file leaf-file-name="Controller.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infovis/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="79" selection-start="1815" selection-end="1815" vertical-scroll-proportion="0.0">
+            <state line="47" column="12" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -105,10 +105,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MainWindow.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainWindow.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/infovis/gui/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="17" column="35" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
+            <state line="17" column="25" selection-start="380" selection-end="380" vertical-scroll-proportion="0.41666666">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -367,10 +367,10 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="SDKs" />
     <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="OverrideImplement.combined" value="true" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
@@ -766,15 +766,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/gui/MainWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="17" column="35" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/infovis/gui/GuiFactory.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="21" column="48" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0">
@@ -789,25 +780,34 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/Application.java">
+    <entry file="file://$PROJECT_DIR$/src/infovis/gui/WeatherArrow.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="42" selection-start="706" selection-end="706" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="79" selection-start="1815" selection-end="1815" vertical-scroll-proportion="0.0">
+        <state line="44" column="42" selection-start="1033" selection-end="1033" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/gui/WeatherArrow.java">
+    <entry file="file://$PROJECT_DIR$/src/infovis/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="26" column="53" selection-start="611" selection-end="611" vertical-scroll-proportion="0.4003268">
+        <state line="35" column="44" selection-start="708" selection-end="708" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infovis/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="47" column="12" selection-start="1123" selection-end="1123" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infovis/gui/MainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="25" selection-start="380" selection-end="380" vertical-scroll-proportion="0.41666666">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
