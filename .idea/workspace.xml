@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="infovis:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="601ba867-1355-43b2-b943-f7b697bd5bdf" name="Default" comment="" />
     <ignored path="infovis.iws" />
@@ -61,7 +66,7 @@
       <file leaf-file-name="Application.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infovis/Application.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="30" selection-start="1853" selection-end="1853" vertical-scroll-proportion="0.0">
+            <state line="34" column="42" selection-start="706" selection-end="706" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -70,52 +75,51 @@
       <file leaf-file-name="DateSlider.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infovis/gui/DateSlider.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="79" column="56" selection-start="2073" selection-end="2073" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="32" column="40" selection-start="785" selection-end="785" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="JSliderCustomLabel.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infovis/gui/JSliderCustomLabel.java">
+      <file leaf-file-name="WeatherArrow.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/infovis/gui/WeatherArrow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="37" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="26" column="53" selection-start="611" selection-end="611" vertical-scroll-proportion="0.4003268">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ExpressionParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="jar://$USER_HOME$/Downloads/prefuse-beta/build/prefuse.src.jar!/prefuse/data/expression/parser/ExpressionParser.java">
+      <file leaf-file-name="Controller.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/infovis/Controller.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="1328" column="52" selection-start="48915" selection-end="48915" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="64" column="79" selection-start="1815" selection-end="1815" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ContainsPredicate.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infovis/gui/ContainsPredicate.java">
+      <file leaf-file-name="MainWindow.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/infovis/gui/MainWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="15" column="8" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="17" column="35" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ScatterPlot.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infovis/gui/ScatterPlot.java">
+      <file leaf-file-name="GuiFactory.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/infovis/gui/GuiFactory.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="110" column="58" selection-start="3974" selection-end="3974" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SocialNetworkVis.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/infovis/SocialNetworkVis.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="61" column="56" selection-start="1990" selection-end="1990" vertical-scroll-proportion="0.0">
+            <state line="21" column="48" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -124,16 +128,16 @@
       <file leaf-file-name="VisPanel.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/infovis/gui/VisPanel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="88" selection-start="1203" selection-end="1203" vertical-scroll-proportion="0.0">
+            <state line="86" column="23" selection-start="1900" selection-end="1900" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IO.java" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/infovis/IO.java">
+      <file leaf-file-name="ScatterPlot.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/infovis/gui/ScatterPlot.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="72" column="22" selection-start="2281" selection-end="2281" vertical-scroll-proportion="0.76555026">
+            <state line="129" column="28" selection-start="4497" selection-end="4497" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -149,27 +153,29 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/src/Application.java" />
-        <option value="$PROJECT_DIR$/src/IO.java" />
-        <option value="$PROJECT_DIR$/src/infovis/TabularDataVis.java" />
-        <option value="$PROJECT_DIR$/src/infovis/SocialNetworkVis.java" />
-        <option value="$PROJECT_DIR$/src/infovis/VisPanel.java" />
-        <option value="$PROJECT_DIR$/src/infovis/BackgroundPanel.java" />
-        <option value="$PROJECT_DIR$/src/infovis/gui/BackgroundPanel.java" />
-        <option value="$PROJECT_DIR$/src/infovis/gui/ContainsPredicate.java" />
+        <option value="$PROJECT_DIR$/src/infovis/gui/InfoPanel.java" />
         <option value="$PROJECT_DIR$/src/infovis/gui/JSliderCustomLabel.java" />
-        <option value="$PROJECT_DIR$/src/infovis/gui/DateSlider.java" />
+        <option value="$PROJECT_DIR$/src/infovis/gui/BackgroundPanel.java" />
         <option value="$PROJECT_DIR$/src/infovis/gui/ScatterPlot.java" />
-        <option value="$PROJECT_DIR$/src/infovis/gui/VisPanel.java" />
+        <option value="$PROJECT_DIR$/src/infovis/models/WeatherModel.java" />
+        <option value="$PROJECT_DIR$/src/infovis/gui/BevelArrows.java" />
+        <option value="$PROJECT_DIR$/src/infovis/GuiListener.java" />
         <option value="$PROJECT_DIR$/src/infovis/Application.java" />
-        <option value="$PROJECT_DIR$/src/infovis/IO.java" />
+        <option value="$PROJECT_DIR$/src/infovis/gui/GuiFactory.java" />
+        <option value="$PROJECT_DIR$/src/infovis/DateChangedAction.java" />
+        <option value="$PROJECT_DIR$/src/infovis/actions/DateChanged.java" />
+        <option value="$PROJECT_DIR$/src/infovis/gui/DateSlider.java" />
+        <option value="$PROJECT_DIR$/src/infovis/gui/MainWindow.java" />
+        <option value="$PROJECT_DIR$/src/infovis/gui/VisPanel.java" />
+        <option value="$PROJECT_DIR$/src/infovis/Controller.java" />
+        <option value="$PROJECT_DIR$/src/infovis/gui/WeatherArrow.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="1368" />
     <option name="y" value="52" />
-    <option name="width" value="1038" />
+    <option name="width" value="1648" />
     <option name="height" value="1024" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -198,16 +204,6 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope">
-        <subPane subId="Project Files">
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-        </subPane>
-      </pane>
       <pane id="PackagesPane">
         <subPane>
           <PATH>
@@ -218,6 +214,16 @@
             <PATH_ELEMENT>
               <option name="myItemId" value="infovis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PackageViewModuleNode" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
+      <pane id="Scope">
+        <subPane subId="Project Files">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
@@ -337,10 +343,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="infovis" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -359,27 +361,24 @@
               <option name="myItemId" value="infovis" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="gui" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="Artifacts" />
     <property name="GoToFile.includeJavaFiles" value="false" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="MemberChooser.sorted" value="false" />
+    <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="project.structure.side.proportion" value="0.20000002" />
-    <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="dynamic.classpath" value="false" />
+    <property name="MemberChooser.copyJavadoc" value="false" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -387,38 +386,6 @@
     </key>
   </component>
   <component name="RunManager" selected="Application.Application">
-    <configuration default="false" name="Application" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="infovis.Application" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="infovis" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
-    <configuration default="false" name="TabularDataVis" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="infovis.TabularDataVis" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="infovis" />
-      <envs />
-      <RunnerSettings RunnerId="Run" />
-      <ConfigurationWrapper RunnerId="Run" />
-      <method />
-    </configuration>
     <configuration default="false" name="SocialNetworkVis" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="infovis.SocialNetworkVis" />
       <option name="VM_PARAMETERS" />
@@ -467,6 +434,38 @@
       <ConfigurationWrapper RunnerId="Run" />
       <method />
     </configuration>
+    <configuration default="false" name="BevelArrows" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="infovis.gui.BevelArrows" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="infovis" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
+    <configuration default="false" name="Application" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="infovis.Application" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="infovis" />
+      <envs />
+      <RunnerSettings RunnerId="Run" />
+      <ConfigurationWrapper RunnerId="Run" />
+      <method />
+    </configuration>
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
@@ -487,24 +486,6 @@
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
-        <option name="Maven.BeforeRunTask" enabled="false" />
-      </method>
-    </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method>
-        <option name="AntTarget" enabled="false" />
-        <option name="BuildArtifacts" enabled="false" />
-        <option name="Make" enabled="true" />
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
@@ -533,6 +514,24 @@
       <envs />
       <properties />
       <listeners />
+      <method>
+        <option name="AntTarget" enabled="false" />
+        <option name="BuildArtifacts" enabled="false" />
+        <option name="Make" enabled="true" />
+        <option name="Maven.BeforeRunTask" enabled="false" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -585,11 +584,11 @@
       </method>
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Application.Application" />
-      <item index="1" class="java.lang.String" itemvalue="Application.TabularDataVis" />
-      <item index="2" class="java.lang.String" itemvalue="Application.SocialNetworkVis" />
-      <item index="3" class="java.lang.String" itemvalue="Application.ScatterPlot" />
-      <item index="4" class="java.lang.String" itemvalue="Application.JSliderCustomLabel" />
+      <item index="0" class="java.lang.String" itemvalue="Application.SocialNetworkVis" />
+      <item index="1" class="java.lang.String" itemvalue="Application.ScatterPlot" />
+      <item index="2" class="java.lang.String" itemvalue="Application.JSliderCustomLabel" />
+      <item index="3" class="java.lang.String" itemvalue="Application.BevelArrows" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Application" />
     </list>
     <configuration name="&lt;template&gt;" type="WebApp" default="true" selected="false">
       <Host>localhost</Host>
@@ -631,7 +630,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="1368" y="52" width="1038" height="1024" extended-state="0" />
+    <frame x="1368" y="52" width="1648" height="1024" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -642,13 +641,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3279743" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.327252" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3290461" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.087878786" sideWeight="0.75995576" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24004425" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.16645807" sideWeight="0.72748005" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.27251995" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -715,91 +714,103 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$USER_HOME$/Downloads/prefuse-beta/build/prefuse.src.jar!/prefuse/data/query/DynamicQueryBinding.java">
+    <entry file="file://$PROJECT_DIR$/src/infovis/gui/InfoPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="21" selection-start="2203" selection-end="2203" vertical-scroll-proportion="0.352518" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/prefuse-beta/build/prefuse.src.jar!/prefuse/data/query/SearchQueryBinding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="47" column="70" selection-start="1787" selection-end="1787" vertical-scroll-proportion="0.8201439" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/TabularDataVis.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="203" column="33" selection-start="7762" selection-end="7762" vertical-scroll-proportion="0.69254184" />
-      </provider>
-    </entry>
-    <entry file="jar:///usr/lib/jvm/java-7-oracle/src.zip!/javax/swing/JSlider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="380" column="48" selection-start="11373" selection-end="11387" vertical-scroll-proportion="0.33286908" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/prefuse-beta/build/prefuse.src.jar!/prefuse/Display.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="425" column="23" selection-start="15297" selection-end="15308" vertical-scroll-proportion="0.41643453" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/prefuse-beta/build/prefuse.src.jar!/prefuse/data/Tuple.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="454" column="18" selection-start="16080" selection-end="16080" vertical-scroll-proportion="0.72022957" />
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/Downloads/prefuse-beta/build/prefuse.src.jar!/prefuse/data/Table.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="775" column="17" selection-start="28697" selection-end="28697" vertical-scroll-proportion="0.33233532" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/Application.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="30" selection-start="1853" selection-end="1853" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/gui/DateSlider.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="79" column="56" selection-start="2073" selection-end="2073" vertical-scroll-proportion="0.0" />
+        <state line="17" column="33" selection-start="321" selection-end="321" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/infovis/gui/JSliderCustomLabel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="37" selection-start="199" selection-end="199" vertical-scroll-proportion="0.0" />
+        <state line="24" column="65" selection-start="696" selection-end="696" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Downloads/prefuse-beta/build/prefuse.src.jar!/prefuse/data/expression/parser/ExpressionParser.java">
+    <entry file="jar://$USER_HOME$/Downloads/prefuse-beta/build/prefuse.src.jar!/prefuse/render/ShapeRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="1328" column="52" selection-start="48915" selection-end="48915" vertical-scroll-proportion="0.0" />
+        <state line="100" column="51" selection-start="3416" selection-end="3416" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/gui/ContainsPredicate.java">
+    <entry file="file://$PROJECT_DIR$/src/infovis/TabularDataVis.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="15" column="8" selection-start="323" selection-end="323" vertical-scroll-proportion="0.0" />
+        <state line="232" column="8" selection-start="8932" selection-end="9007" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/gui/ScatterPlot.java">
+    <entry file="file://$PROJECT_DIR$/src/infovis/gui/BevelArrows.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="110" column="58" selection-start="3974" selection-end="3974" vertical-scroll-proportion="0.0">
+        <state line="38" column="8" selection-start="1038" selection-end="1038" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/SocialNetworkVis.java">
+    <entry file="file://$PROJECT_DIR$/src/infovis/models/WeatherModel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="61" column="56" selection-start="1990" selection-end="1990" vertical-scroll-proportion="0.0">
+        <state line="24" column="60" selection-start="481" selection-end="481" vertical-scroll-proportion="0.45762712">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infovis/gui/ScatterPlot.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="129" column="28" selection-start="4497" selection-end="4497" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infovis/gui/DateSlider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="32" column="40" selection-start="785" selection-end="785" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infovis/gui/MainWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="17" column="35" selection-start="380" selection-end="380" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infovis/gui/GuiFactory.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="21" column="48" selection-start="444" selection-end="444" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/infovis/gui/VisPanel.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="88" selection-start="1203" selection-end="1203" vertical-scroll-proportion="0.0">
+        <state line="86" column="23" selection-start="1900" selection-end="1900" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/infovis/IO.java">
+    <entry file="file://$PROJECT_DIR$/src/infovis/Application.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="72" column="22" selection-start="2281" selection-end="2281" vertical-scroll-proportion="0.76555026">
+        <state line="34" column="42" selection-start="706" selection-end="706" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infovis/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="79" selection-start="1815" selection-end="1815" vertical-scroll-proportion="0.0">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/infovis/gui/WeatherArrow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="26" column="53" selection-start="611" selection-end="611" vertical-scroll-proportion="0.4003268">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -809,10 +820,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
+          <last-edited>infovis:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.20000002" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -859,7 +872,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.20000002" />
               </list>
             </option>
           </splitter-proportions>

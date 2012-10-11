@@ -1,7 +1,6 @@
 package infovis.gui;
 
 import java.awt.*;
-import java.awt.image.*;
 import javax.swing.*;
 
 /*
@@ -13,8 +12,7 @@ import javax.swing.*;
  *  Also, any component added directly to this panel will be made
  *  non-opaque so that the custom painting can show through.
  */
-public class BackgroundPanel extends JPanel
-{
+public class BackgroundPanel extends JPanel{
 	public static final int SCALED = 0;
 	public static final int TILED = 1;
 	public static final int ACTUAL = 2;

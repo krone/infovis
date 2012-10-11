@@ -7,9 +7,6 @@ package infovis;
  * To change this template use File | Settings | File Templates.
  */
 
-
-
-
 import prefuse.data.Table;
 import prefuse.data.Tuple;
 import prefuse.data.io.CSVTableReader;

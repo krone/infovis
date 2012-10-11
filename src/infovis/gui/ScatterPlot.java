@@ -57,30 +57,18 @@ public class ScatterPlot extends Display {
     public ScatterPlot(Table t, String xfield, String yfield, String sfield) {
         super(new Visualization());
 
-        // --------------------------------------------------------------------
-        // STEP 1: setup the visualized data
-
         m_vis.addTable(group, t);
 
         DefaultRendererFactory rf = new DefaultRendererFactory(m_shapeR);
         m_vis.setRendererFactory(rf);
 
-        // --------------------------------------------------------------------
-        // STEP 2: create actions to process the visual data
 
-        // set up the actions
-        AxisLayout x_axis = new AxisLayout(group, xfield,
-                Constants.X_AXIS, VisiblePredicate.TRUE);
+        AxisLayout x_axis = new AxisLayout(group, xfield, Constants.X_AXIS, VisiblePredicate.TRUE);
         m_vis.putAction("x", x_axis);
-
-        AxisLayout y_axis = new AxisLayout(group, yfield,
-                Constants.Y_AXIS, VisiblePredicate.TRUE);
+        AxisLayout y_axis = new AxisLayout(group, yfield, Constants.Y_AXIS, VisiblePredicate.TRUE);
         m_vis.putAction("y", y_axis);
 
         //ColorAction color = new ColorAction(group, VisualItem.STROKECOLOR, ColorLib.rgb(255,0,0));
-
-
-
         //ColorAction fill = new ColorAction(group, VisualItem.FILLCOLOR, ColorLib.rgb(255,0,0));
         // colour palette for nominal data type
         int[] palette = new int[]{ColorLib.rgb(0, 255, 0), ColorLib.rgb(255, 0, 0), ColorLib.rgb(0, 0, 255)};
@@ -91,15 +79,14 @@ public class ScatterPlot extends Display {
         m_vis.putAction("color", fill);
         m_vis.putAction("color", color);
 
-        //DataShapeAction shape = new DataShapeAction(group, sfield);
-        ShapeAction shape = new ShapeAction();
+
+        ShapeAction shape = new ShapeAction(group, Constants.SHAPE_ELLIPSE);
         m_vis.putAction("shape", shape);
 
         ActionList draw = new ActionList();
         draw.add(x_axis);
         draw.add(y_axis);
-        if ( sfield != null )
-            draw.add(shape);
+        draw.add(shape);
         draw.add(color);
         draw.add(fill);
         draw.add(new RepaintAction());
@@ -107,27 +94,20 @@ public class ScatterPlot extends Display {
 
         // --------------------------------------------------------------------
         // STEP 3: set up a display and ui components to show the visualization
-
-
         setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
         setSize(1280,700);
         setHighQuality(true);
-        //setBackground(Color.BLACK);
         setBackgroundImage("data/Vastopolis_Map_small.jpg", false, false);
+
         // add movement controls
-        //addControlListener(new ZoomControl());
-        //addControlListener(new PanControl());
+        addControlListener(new ZoomControl());
+        addControlListener(new PanControl());
 
         ToolTipControl ttc = new ToolTipControl(new String[] {xfield,yfield,sfield});
         //BetterTooltipControl ttc = new BetterTooltipControl("URL=%s,Size=%s,Links=%s",new String[] {xfield,yfield,sfield});
         addControlListener(ttc);
 
-
-        // --------------------------------------------------------------------        
-        // STEP 4: launching the visualization
-
         m_vis.run("draw");
-
     }
 
     public void run()

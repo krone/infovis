@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Hashtable;
 
-public class JSliderCustomLabel extends JPanel {
+public class JSliderCustomLabel extends JPanel{
     public JSliderCustomLabel() {
         initializeUI();
     }

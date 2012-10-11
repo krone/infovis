@@ -1,6 +1,7 @@
 package infovis.gui;
 
 import infovis.IO;
+import infovis.models.WeatherModel;
 import prefuse.data.Table;
 import prefuse.data.Tuple;
 import prefuse.data.expression.Predicate;
@@ -24,80 +25,58 @@ import java.util.Iterator;
  * To change this template use File | Settings | File Templates.
  */
 
-
 public class DateSlider extends JPanel{
 
+    private JSlider slider;
+    private ArrayList<WeatherModel> dates;
 
-
-    public DateSlider(VisPanel vis)
+    public DateSlider()
     {
         Table data = IO.readCsv("data/Weather.csv");
-        Iterator iter = data.tuples();
-        Hashtable labelTable = new Hashtable();
-        ArrayList<String> dates = new ArrayList<String>();
+        Iterator itr = data.tuples();
 
-        Format formatter;
-        formatter = new SimpleDateFormat("M/d/yyyy");
+        Hashtable labelTable = new Hashtable();
+        dates = new ArrayList<WeatherModel>();
 
         int c = 0;
-        while(iter.hasNext())
+        while(itr.hasNext())
         {
-            Tuple el = (Tuple)iter.next();
+            Tuple el = (Tuple)itr.next();
+
             labelTable.put(c, new JLabel(el.getString("Date")));
-            String date = formatter.format(el.getDate("Date"));
-            dates.add(date);
+
+            WeatherModel model = new WeatherModel();
+            model.date =  el.getDate("Date");
+            model.weather = el.getString("Weather");
+            model.averageWindSpeed = el.getInt("Average_Wind_Speed");
+            model.windDirection = el.getString("Wind_Direction");
+            dates.add(model);
             c++;
 
         }
-
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(500, 50));
 
-        JSlider slider = new JSlider(JSlider.HORIZONTAL, 0, 20, 0);
+        slider = new JSlider(JSlider.HORIZONTAL, 0, 20, 0);
         slider.setMinorTickSpacing(1);
         slider.setMajorTickSpacing(2);
         slider.setPaintTicks(true);
-
         slider.setPaintLabels(true);
         slider.setLabelTable(labelTable);
         slider.setPaintLabels(true);
-        slider.addChangeListener(new BoundedChangeListener(dates, vis));
+
         add(slider, BorderLayout.NORTH);
     }
 
-
-}
-
-class BoundedChangeListener implements ChangeListener
-{
-    ArrayList<String> dates;
-    private VisPanel _vis;
-    public BoundedChangeListener(ArrayList<String> vals, VisPanel vis)
+    public ArrayList<WeatherModel> getDates()
     {
-        dates = vals;
-        _vis = vis;
+        return dates;
     }
-    public void stateChanged(ChangeEvent changeEvent)
+
+    public void setChangeListener(ChangeListener changeListener)
     {
-        Object source = changeEvent.getSource();
-
-        if (source instanceof JSlider) {
-            JSlider theJSlider = (JSlider) source;
-            if (!theJSlider.getValueIsAdjusting()) {
-
-                String date = dates.get(theJSlider.getValue());
-                System.out.println(date);
-
-
-                Predicate myPredicate = (Predicate) ExpressionParser.parse("createdDate = '"+date+"' AND isSick = 1");
-
-                _vis.addPredicate(myPredicate);
-                _vis.render();
-                _vis.repaint();
-
-            }
-        } else {
-            System.out.println("Something changed: " + source);
-        }
+        slider.addChangeListener(changeListener);
     }
 }
+
+

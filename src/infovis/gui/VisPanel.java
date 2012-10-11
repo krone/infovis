@@ -37,10 +37,11 @@ import prefuse.visual.expression.VisiblePredicate;
 /**
  * Main Visualisation Panel
  */
-public class VisPanel extends JPanel
+public class VisPanel extends JLayeredPane
 {
     private ScatterPlot _sp;
     private ArrayList<Predicate> _predicates = new ArrayList<Predicate>();
+    private WeatherArrow m_w;
     /**
      * Takes in prefuse Table
      * and renders the visualisation
@@ -48,17 +49,16 @@ public class VisPanel extends JPanel
      */
     public VisPanel()
     {
-
+        //this.add(new WeatherArrow(), new Integer(10));
 
     }
 
     public void setData(Table data)
     {
-        //ZoomControl zoom = new ZoomControl(Control.RIGHT_MOUSE_BUTTON);
         _sp = new ScatterPlot(data, "x", "y");
-        //_sp.addControlListener(zoom);
         _sp.setPointSize(5);
         _sp.setSize(1800, 930);
+        this.setSize(200, 500);
     }
     public void addPredicate(Predicate p)
     {
@@ -78,6 +78,14 @@ public class VisPanel extends JPanel
             _sp.run();
         }
 
+    }
+    public void setWeatherPanel(WeatherArrow w)
+    {
+        m_w = w;
+    }
+    public WeatherArrow getWeatherPanel()
+    {
+        return m_w;
     }
 
 
