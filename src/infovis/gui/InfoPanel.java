@@ -10,6 +10,8 @@ package infovis.gui;
 
 
 import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 
 /**
  * Displays information relating to some entity
@@ -18,6 +20,27 @@ import javax.swing.*;
 public class InfoPanel extends JPanel {
     public InfoPanel(){
 
+        this.setSize(150, 800);
+        this.setBackground(Color.DARK_GRAY);
+        JLabel label = new JLabel("Filters");
+
+        this.add(label);
+        Color[] colours = {Color.RED, Color.orange, Color.yellow, Color.green, Color.cyan, Color.blue, Color.magenta, Color.pink, Color.white };
+
+        for(int i = 0; i<8; i++)
+        {
+            JPanel txtPanel = new JPanel();
+            txtPanel.setBackground(colours[i]);
+            txtPanel.setBorder(BorderFactory.createMatteBorder(2,2,2,2,Color.gray));
+            txtPanel.setSize(120, 40);
+
+            JTextField txtfield = new JTextField(15);
+            txtfield.setBorder(javax.swing.BorderFactory.createEmptyBorder());
+
+            txtPanel.add(txtfield);
+            this.add(txtPanel);
+        }
+        //this.setLayout(new GridLayout());
     }
 
 }

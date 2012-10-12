@@ -20,6 +20,7 @@ public class GuiFactory {
     private static final VisPanel m_vis = new VisPanel();
     private static final MainWindow m_window = new MainWindow();
     private static final DateSlider m_dateslider = new DateSlider();
+    private static final InfoPanel m_info = new InfoPanel();
 
 
     public static VisPanel getVisPanel()
@@ -33,5 +34,9 @@ public class GuiFactory {
     public static DateSlider getDateSlider()
     {
         return  m_dateslider;
+    }
+    public static InfoPanel getInfoPanel()
+    {
+        return  m_info;
     }
 }

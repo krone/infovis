@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -28,6 +29,8 @@ import prefuse.controls.PanControl;
 import prefuse.controls.ToolTipControl;
 import prefuse.controls.ZoomControl;
 import prefuse.data.Table;
+import prefuse.data.expression.Predicate;
+import prefuse.data.expression.parser.ExpressionParser;
 import prefuse.data.io.DataIOException;
 import prefuse.data.io.DelimitedTextTableReader;
 import prefuse.data.io.sql.ConnectionFactory;
@@ -47,11 +50,23 @@ import prefuse.visual.expression.VisiblePredicate;
 public class ScatterPlot extends Display {
 
     private static final String group = "data";
+    ArrayList<ColorAction> colours = new ArrayList<ColorAction>();
 
     private ShapeRenderer m_shapeR = new ShapeRenderer(2);
 
     public ScatterPlot(Table t, String xfield, String yfield) {
         this(t, xfield, yfield, null);
+    }
+
+    public void addColor(Predicate predicate, int color)
+    {
+        ColorAction c = new ColorAction(group, predicate, VisualItem.STROKECOLOR, color);
+        ColorAction f = new ColorAction(group, predicate, VisualItem.FILLCOLOR, color);
+        m_vis.putAction("color", c);
+        m_vis.putAction("color", f);
+        colours.add(c);
+        colours.add(f);
+
     }
 
     public ScatterPlot(Table t, String xfield, String yfield, String sfield) {
@@ -71,13 +86,24 @@ public class ScatterPlot extends Display {
         //ColorAction color = new ColorAction(group, VisualItem.STROKECOLOR, ColorLib.rgb(255,0,0));
         //ColorAction fill = new ColorAction(group, VisualItem.FILLCOLOR, ColorLib.rgb(255,0,0));
         // colour palette for nominal data type
-        int[] palette = new int[]{ColorLib.rgb(0, 255, 0), ColorLib.rgb(255, 0, 0), ColorLib.rgb(0, 0, 255)};
+        int[] palette = new int[]{ColorLib.rgb(0, 255, 0), ColorLib.rgb(255, 0, 0), ColorLib.rgb(0, 0, 255), ColorLib.rgb(148,0 , 211), ColorLib.rgb(255, 140, 0)};
         /* ColorLib.rgb converts the colour values to integers */
         // map data to colours in the palette
-        DataColorAction fill = new DataColorAction(group, "type", Constants.NOMINAL, VisualItem.FILLCOLOR, palette);
-        DataColorAction color = new DataColorAction(group, "type", Constants.NOMINAL, VisualItem.STROKECOLOR, palette);
+        //DataColorAction fill = new DataColorAction(group, "type", Constants.NOMINAL, VisualItem.FILLCOLOR, palette);
+        //DataColorAction color = new DataColorAction(group, "type", Constants.NOMINAL, VisualItem.STROKECOLOR, palette);
+
+
+        /*ColorAction color = new ColorAction(group, VisualItem.STROKECOLOR, ColorLib.rgb(255,0,0));
+        ColorAction fill = new ColorAction(group, VisualItem.FILLCOLOR, ColorLib.rgb(255,0,0));
         m_vis.putAction("color", fill);
-        m_vis.putAction("color", color);
+        m_vis.putAction("color", color);*/
+
+
+        addColor((Predicate)ExpressionParser.parse("type = 'truck'"), ColorLib.rgb(255, 0, 0));
+        addColor((Predicate)ExpressionParser.parse("type = 'cough'"), ColorLib.rgb(0, 255, 0));
+        addColor((Predicate)ExpressionParser.parse("type = 'headache'"), ColorLib.rgb(0, 0, 255));
+
+
 
 
         ShapeAction shape = new ShapeAction(group, Constants.SHAPE_ELLIPSE);
@@ -87,15 +113,18 @@ public class ScatterPlot extends Display {
         draw.add(x_axis);
         draw.add(y_axis);
         draw.add(shape);
-        draw.add(color);
-        draw.add(fill);
+
+        for(ColorAction c:colours)
+        {
+            draw.add(c);
+        }
         draw.add(new RepaintAction());
         m_vis.putAction("draw", draw);
 
         // --------------------------------------------------------------------
         // STEP 3: set up a display and ui components to show the visualization
-        setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        setSize(1280,700);
+        setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+        setSize(1826,929);
         setHighQuality(true);
         setBackgroundImage("data/Vastopolis_Map_small.jpg", false, false);
 

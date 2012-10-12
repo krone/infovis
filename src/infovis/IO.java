@@ -48,7 +48,7 @@ public class IO
         data.addColumn("y", Integer.class);
         data.addColumn("isSick", Integer.class);
         data.addColumn("createdDate", String.class);
-        data.addColumn("type", Integer.class);
+        data.addColumn("type", String.class);
 
         float maxLeft = 93.5673f;
         float maxUp = 42.3017f;
@@ -67,15 +67,22 @@ public class IO
 
             String text = el.getString("text");
             el.set("isSick", 0);
-            if(text.contains("flu") || text.contains("sick") || text.contains("pneumonia") || text.contains("cough") || text.contains("fever") || text.contains("breath") || text.contains("headache") || text.contains("chill")|| text.contains("cold"))
+            if(text.contains("cough"))
             {
                 el.set("isSick", 1);
-                el.set("type", 1);
+                el.set("type", "cough");
             }
-            if(text.contains("crash") || text.contains("accident") || text.contains("truck"))
+            if(text.contains("truck"))
             {
-                el.set("type", 2);
+                el.set("isSick", 1);
+                el.set("type", "truck");
             }
+            if(text.contains("headache"))
+            {
+                el.set("isSick", 1);
+                el.set("type", "headache");
+            }
+
             String date = el.getString("Created_at");
             String[] c = date.split(" ");
             el.set("createdDate", c[0].trim());

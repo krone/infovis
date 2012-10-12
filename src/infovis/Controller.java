@@ -27,7 +27,7 @@ public class Controller {
 
 
         // read in and preprocess data
-        Table data = IO.readCsv("data/Microblogs.csv");
+        Table data = IO.readCsv("data/Microblogs_test.csv");
         data = IO.preprocessPosts(data, 1826, 929);
         String query = "createdDate = '5/13/2011' AND isSick = 1";
         Predicate myPredicate = (Predicate) ExpressionParser.parse(query);
@@ -49,7 +49,7 @@ public class Controller {
         WeatherArrow w = new WeatherArrow();
         GuiFactory.getVisPanel().setWeatherPanel(w);
 
-        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, w, GuiFactory.getVisPanel());
+        JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, GuiFactory.getInfoPanel(), GuiFactory.getVisPanel());
         split.setOneTouchExpandable(true);
         split.setDividerLocation(150);
 
@@ -59,6 +59,9 @@ public class Controller {
 
         frame.getContentPane().add(GuiFactory.getDateSlider(), BorderLayout.NORTH);
         frame.getContentPane().add(split, BorderLayout.CENTER);
+
+
+
         frame.pack();
         frame.setVisible(true);
     }
