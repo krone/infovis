@@ -4,8 +4,12 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.geom.Rectangle2D;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
@@ -20,14 +24,13 @@ import prefuse.Display;
 import prefuse.Visualization;
 import prefuse.action.ActionList;
 import prefuse.action.RepaintAction;
-import prefuse.action.assignment.ColorAction;
-import prefuse.action.assignment.DataColorAction;
-import prefuse.action.assignment.DataShapeAction;
-import prefuse.action.assignment.ShapeAction;
+import prefuse.action.assignment.*;
 import prefuse.action.layout.AxisLayout;
+import prefuse.action.layout.Layout;
 import prefuse.controls.PanControl;
 import prefuse.controls.ToolTipControl;
 import prefuse.controls.ZoomControl;
+import prefuse.data.Schema;
 import prefuse.data.Table;
 import prefuse.data.expression.Predicate;
 import prefuse.data.expression.parser.ExpressionParser;
@@ -38,6 +41,9 @@ import prefuse.data.io.sql.DatabaseDataSource;
 import prefuse.render.DefaultRendererFactory;
 import prefuse.render.ShapeRenderer;
 import prefuse.util.ColorLib;
+import prefuse.util.FontLib;
+import prefuse.util.PrefuseLib;
+import prefuse.visual.DecoratorItem;
 import prefuse.visual.VisualItem;
 import prefuse.visual.expression.VisiblePredicate;
 
@@ -47,7 +53,16 @@ import prefuse.visual.expression.VisiblePredicate;
  *
  * @author <a href="http://jheer.org">jeffrey heer</a>
  */
-public class ScatterPlot extends Display {
+public class ScatterPlot extends Display{
+
+    // create data description of labels, setting colors, fonts ahead of time
+    private static final Schema LABEL_SCHEMA = PrefuseLib.getVisualItemSchema();
+    static {
+        LABEL_SCHEMA.setDefault(VisualItem.INTERACTIVE, false);
+        LABEL_SCHEMA.setDefault(VisualItem.TEXTCOLOR, ColorLib.gray(200));
+        LABEL_SCHEMA.setDefault(VisualItem.FONT, FontLib.getFont("Tahoma", 16));
+    }
+
 
     private static final String group = "data";
     ArrayList<ColorAction> colours = new ArrayList<ColorAction>();
@@ -103,7 +118,12 @@ public class ScatterPlot extends Display {
         addColor((Predicate)ExpressionParser.parse("type = 'cough'"), ColorLib.rgb(0, 255, 0));
         addColor((Predicate)ExpressionParser.parse("type = 'headache'"), ColorLib.rgb(0, 0, 255));
 
+        addColor((Predicate)ExpressionParser.parse("type = 'LUSANA'"), ColorLib.rgb(255, 255, 0));
 
+
+
+
+        //m_vis.addDecorators("labelsGrp", "x", LABEL_SCHEMA);
 
 
         ShapeAction shape = new ShapeAction(group, Constants.SHAPE_ELLIPSE);
@@ -113,6 +133,7 @@ public class ScatterPlot extends Display {
         draw.add(x_axis);
         draw.add(y_axis);
         draw.add(shape);
+        //draw.add(new LabelLayout("labelsGrp"));
 
         for(ColorAction c:colours)
         {
@@ -152,6 +173,22 @@ public class ScatterPlot extends Display {
         m_shapeR.setBaseSize(size);
         repaint();
     }
+
+    public static class LabelLayout extends Layout {
+        public LabelLayout(String group) {
+            super(group);
+        }
+        public void run(double frac) {
+            Iterator iter = m_vis.items(m_group);
+            while ( iter.hasNext() ) {
+                DecoratorItem item = (DecoratorItem)iter.next();
+                VisualItem node = item.getDecoratedItem();
+                Rectangle2D bounds = node.getBounds();
+                setX(item, null, bounds.getCenterX());
+                setY(item, null, bounds.getCenterY());
+            }
+        }
+    } // end of inner class LabelLayout
 
 
 
@@ -278,5 +315,6 @@ public class ScatterPlot extends Display {
 
         return toolbar;
     }
+
 
 } // end of class ScatterPlot

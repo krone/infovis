@@ -51,9 +51,11 @@ public class IO
         data.addColumn("type", String.class);
 
         float maxLeft = 93.5673f;
+        float maxRight = 93.1923f;
         float maxUp = 42.3017f;
-        float scale_x = (float)0.375/w;
-        float scale_y = (float)0.1408/h;
+        float maxDown = 42.1609f;
+        float scale_x = (float)(w/0.375);
+        float scale_y = (float)(h/0.1408);
 
         // iterate through each tuple in the data
         Iterator itr = data.tuples();
@@ -67,17 +69,24 @@ public class IO
 
             String text = el.getString("text");
             el.set("isSick", 0);
-            if(text.contains("cough"))
+
+            if(text.contains("LUSANA"))
+            {
+                el.set("isSick", 1);
+                el.set("type", "LUSANA");
+            }
+
+            if(text.contains("stomach"))
             {
                 el.set("isSick", 1);
                 el.set("type", "cough");
             }
-            if(text.contains("truck"))
+            if(text.contains("truck") || text.contains("accident")|| text.contains("terrible")|| text.contains("noon"))
             {
                 el.set("isSick", 1);
                 el.set("type", "truck");
             }
-            if(text.contains("headache"))
+            if(text.contains("headache") || text.contains("sick") || text.contains("flu")|| text.contains("cough")|| text.contains("worse"))
             {
                 el.set("isSick", 1);
                 el.set("type", "headache");
@@ -93,18 +102,22 @@ public class IO
             el.set("latitude", latitude);
             el.set("longitude", longitude);
 
-            int xVal = (int)Math.round((maxLeft - longitude)/scale_x);
+            System.out.println("--------------------------------------------");
+
+            int xVal = (int)Math.round((maxLeft - longitude)*scale_x);
             el.set("x", xVal);
 
-            int yVal = (int)Math.round((maxUp - latitude)/scale_y);
+
+
+            int yVal = (int)Math.round((latitude - maxDown)*scale_y);
             el.set("y", yVal);
+
+            /*System.out.println(latitude +": "+scale_y+": "+maxUp);
+            System.out.println("diff = "+(maxUp - latitude));
+            System.out.println(yVal);*/
 
         }
         return data;
     }
-
-
-
-
 }
 

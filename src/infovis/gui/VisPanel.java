@@ -13,6 +13,8 @@ import prefuse.data.Table;
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +39,7 @@ import prefuse.visual.expression.VisiblePredicate;
 /**
  * Main Visualisation Panel
  */
-public class VisPanel extends JLayeredPane
+public class VisPanel extends JLayeredPane   implements MouseListener
 {
     private ScatterPlot _sp;
     private ArrayList<Predicate> _predicates = new ArrayList<Predicate>();
@@ -56,9 +58,10 @@ public class VisPanel extends JLayeredPane
     public void setData(Table data)
     {
         _sp = new ScatterPlot(data, "x", "y");
-        _sp.setPointSize(5);
-        _sp.setSize(1800, 930);
-        this.setSize(200, 500);
+
+        _sp.setPointSize(8);
+        _sp.setSize(1826, 929);
+        this.setSize(1826, 929);
     }
     public void addPredicate(Predicate p)
     {
@@ -87,7 +90,34 @@ public class VisPanel extends JLayeredPane
     {
         return m_w;
     }
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        System.out.println(e.getX());
+        System.out.println(e.getY());
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 
+    @Override
+    public void mousePressed(MouseEvent e) {
+        //To change body of implemented methods use File | Settings | File Templates.
+        System.out.println(e.getX());
+        System.out.println(e.getY());
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        //To change body of implemented methods use File | Settings | File Templates.
+    }
 
 
 }
