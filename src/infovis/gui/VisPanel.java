@@ -55,11 +55,19 @@ public class VisPanel extends JLayeredPane   implements MouseListener
 
     }
 
+    public void updateData(Table data)
+    {
+        _sp.updateData(data);
+        _sp.repaint();
+        _sp.run();
+    }
+
+
     public void setData(Table data)
     {
         _sp = new ScatterPlot(data, "x", "y");
 
-        _sp.setPointSize(8);
+        _sp.setPointSize(5);
         _sp.setSize(1826, 929);
         this.setSize(1826, 929);
     }

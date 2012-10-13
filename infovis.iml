@@ -10,6 +10,7 @@
     <orderEntry type="library" name="prefuse" level="project" />
     <orderEntry type="library" name="demos-beta-20060220" level="project" />
     <orderEntry type="library" name="postgresql:postgresql:9.1-901-1.jdbc4" level="project" />
+    <orderEntry type="library" name="com.google.collect:com.springsource.com.google.common.collect:0.5.0.alpha" level="project" />
   </component>
 </module>
 

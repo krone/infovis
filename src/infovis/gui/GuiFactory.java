@@ -9,6 +9,8 @@ package infovis.gui;
  */
 
 
+import infovis.Controller;
+
 import javax.swing.*;
 
 /**
@@ -16,11 +18,10 @@ import javax.swing.*;
  */
 public class GuiFactory {
 
-
-    private static final VisPanel m_vis = new VisPanel();
-    private static final MainWindow m_window = new MainWindow();
-    private static final DateSlider m_dateslider = new DateSlider();
-    private static final InfoPanel m_info = new InfoPanel();
+    private static VisPanel m_vis = new VisPanel();
+    private static MainWindow m_window = new MainWindow();
+    private static DateSlider m_dateslider = new DateSlider();
+    private static InfoPanel m_info = new InfoPanel();
 
 
     public static VisPanel getVisPanel()

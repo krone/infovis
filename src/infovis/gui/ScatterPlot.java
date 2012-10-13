@@ -84,6 +84,14 @@ public class ScatterPlot extends Display{
 
     }
 
+    public void updateData(Table t)
+    {
+        m_vis.reset();
+        m_vis.addTable(group, t);
+
+    }
+
+
     public ScatterPlot(Table t, String xfield, String yfield, String sfield) {
         super(new Visualization());
 
@@ -101,7 +109,6 @@ public class ScatterPlot extends Display{
         //ColorAction color = new ColorAction(group, VisualItem.STROKECOLOR, ColorLib.rgb(255,0,0));
         //ColorAction fill = new ColorAction(group, VisualItem.FILLCOLOR, ColorLib.rgb(255,0,0));
         // colour palette for nominal data type
-        int[] palette = new int[]{ColorLib.rgb(0, 255, 0), ColorLib.rgb(255, 0, 0), ColorLib.rgb(0, 0, 255), ColorLib.rgb(148,0 , 211), ColorLib.rgb(255, 140, 0)};
         /* ColorLib.rgb converts the colour values to integers */
         // map data to colours in the palette
         //DataColorAction fill = new DataColorAction(group, "type", Constants.NOMINAL, VisualItem.FILLCOLOR, palette);
@@ -113,18 +120,11 @@ public class ScatterPlot extends Display{
         m_vis.putAction("color", fill);
         m_vis.putAction("color", color);*/
 
-
-        addColor((Predicate)ExpressionParser.parse("type = 'truck'"), ColorLib.rgb(255, 0, 0));
-        addColor((Predicate)ExpressionParser.parse("type = 'cough'"), ColorLib.rgb(0, 255, 0));
-        addColor((Predicate)ExpressionParser.parse("type = 'headache'"), ColorLib.rgb(0, 0, 255));
-
-        addColor((Predicate)ExpressionParser.parse("type = 'LUSANA'"), ColorLib.rgb(255, 255, 0));
-
-
-
-
-        //m_vis.addDecorators("labelsGrp", "x", LABEL_SCHEMA);
-
+        Color[] coloursList = {Color.red, Color.orange, Color.yellow, Color.green, Color.cyan, Color.blue, Color.magenta, Color.pink, Color.white };
+        for(Color c:coloursList)
+        {
+            addColor((Predicate)ExpressionParser.parse("clr = '"+String.valueOf(c.getRGB())+"'"), ColorLib.rgb(c.getRed(), c.getGreen(), c.getBlue()));
+        }
 
         ShapeAction shape = new ShapeAction(group, Constants.SHAPE_ELLIPSE);
         m_vis.putAction("shape", shape);
@@ -135,9 +135,9 @@ public class ScatterPlot extends Display{
         draw.add(shape);
         //draw.add(new LabelLayout("labelsGrp"));
 
-        for(ColorAction c:colours)
+        for(ColorAction ct:colours)
         {
-            draw.add(c);
+            draw.add(ct);
         }
         draw.add(new RepaintAction());
         m_vis.putAction("draw", draw);
@@ -173,148 +173,5 @@ public class ScatterPlot extends Display{
         m_shapeR.setBaseSize(size);
         repaint();
     }
-
-    public static class LabelLayout extends Layout {
-        public LabelLayout(String group) {
-            super(group);
-        }
-        public void run(double frac) {
-            Iterator iter = m_vis.items(m_group);
-            while ( iter.hasNext() ) {
-                DecoratorItem item = (DecoratorItem)iter.next();
-                VisualItem node = item.getDecoratedItem();
-                Rectangle2D bounds = node.getBounds();
-                setX(item, null, bounds.getCenterX());
-                setY(item, null, bounds.getCenterY());
-            }
-        }
-    } // end of inner class LabelLayout
-
-
-
-    // ------------------------------------------------------------------------
-
-    public static void main(String[] argv) {
-        String data = "/fisher.iris.txt";
-        String xfield = "page_size";
-        String yfield = "count";
-        String sfield = "url";
-        if ( argv.length >= 3 ) {
-            data = argv[0];
-            xfield = argv[1];
-            yfield = argv[2];
-            sfield = ( argv.length > 3 ? argv[3] : null );
-        }
-
-        final ScatterPlot sp = demo(data, xfield, yfield, sfield);
-        JToolBar toolbar = getEncodingToolbar(sp, xfield, yfield, sfield);
-
-
-
-        JFrame frame = new JFrame("p r e f u s e  |  s c a t t e r");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.getContentPane().add(toolbar, BorderLayout.NORTH);
-        frame.getContentPane().add(sp, BorderLayout.CENTER);
-        frame.pack();
-        frame.setVisible(true);
-    }
-
-    public static ScatterPlot demo(String data, String xfield, String yfield) {
-        return demo(data, xfield, yfield, null);
-    }
-
-    public static ScatterPlot demo(String data, String xfield,
-                                   String yfield, String sfield)
-    {
-
-
-        Table table = null;
-        try
-        {
-            @SuppressWarnings("unused")
-            DatabaseDataSource db = ConnectionFactory.getDatabaseConnection("org.postgresql.Driver","jdbc:postgresql://localhost/dataDB", "prefuse", "password");
-            table = db.getData("SELECT p.url_id,p.url, p.page_size, COUNT(l.from_url_id) From t_links l, t_pages p Where l.from_url_id = p.url_id AND p.crawl_id = 0 GROUP BY p.url_id, p.page_size, p.url");
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (DataIOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        finally
-        {
-
-        }
-
-        ScatterPlot scatter = new ScatterPlot(table, xfield, yfield, sfield);
-        scatter.setPointSize(3);
-        return scatter;
-    }
-
-    private static JToolBar getEncodingToolbar(final ScatterPlot sp,
-                                               final String xfield, final String yfield, final String sfield)
-    {
-        int spacing = 10;
-
-        // create list of column names
-        Table t = (Table)sp.getVisualization().getSourceData(group);
-        String[] colnames = new String[t.getColumnCount()];
-        for ( int i=0; i<colnames.length; ++i )
-            colnames[i] = t.getColumnName(i);
-
-        // create toolbar that allows visual mappings to be changed
-        JToolBar toolbar = new JToolBar();
-        toolbar.setLayout(new BoxLayout(toolbar, BoxLayout.X_AXIS));
-        toolbar.add(Box.createHorizontalStrut(spacing));
-
-        final JComboBox xcb = new JComboBox(colnames);
-        xcb.setSelectedItem(xfield);
-        xcb.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Visualization vis = sp.getVisualization();
-                AxisLayout xaxis = (AxisLayout)vis.getAction("x");
-                xaxis.setDataField((String)xcb.getSelectedItem());
-                vis.run("draw");
-            }
-        });
-        toolbar.add(new JLabel("X: "));
-        toolbar.add(xcb);
-        toolbar.add(Box.createHorizontalStrut(2*spacing));
-
-        final JComboBox ycb = new JComboBox(colnames);
-        ycb.setSelectedItem(yfield);
-        ycb.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Visualization vis = sp.getVisualization();
-                AxisLayout yaxis = (AxisLayout)vis.getAction("y");
-                yaxis.setDataField((String)ycb.getSelectedItem());
-                vis.run("draw");
-            }
-        });
-        toolbar.add(new JLabel("Y: "));
-        toolbar.add(ycb);
-        toolbar.add(Box.createHorizontalStrut(2*spacing));
-
-        final JComboBox scb = new JComboBox(colnames);
-        scb.setSelectedItem(sfield);
-        scb.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Visualization vis = sp.getVisualization();
-                DataShapeAction s = (DataShapeAction)vis.getAction("shape");
-                s.setDataField((String)scb.getSelectedItem());
-                vis.run("draw");
-            }
-        });
-        toolbar.add(new JLabel("Shape: "));
-        toolbar.add(scb);
-        toolbar.add(Box.createHorizontalStrut(spacing));
-        toolbar.add(Box.createHorizontalGlue());
-
-        return toolbar;
-    }
-
 
 } // end of class ScatterPlot
