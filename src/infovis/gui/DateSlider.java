@@ -1,18 +1,13 @@
 package infovis.gui;
 
-import infovis.IO;
+import infovis.data.IO;
 import infovis.models.WeatherModel;
 import prefuse.data.Table;
 import prefuse.data.Tuple;
-import prefuse.data.expression.Predicate;
-import prefuse.data.expression.parser.ExpressionParser;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
-import java.text.Format;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Iterator;

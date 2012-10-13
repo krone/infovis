@@ -1,4 +1,5 @@
 package infovis;
+import infovis.data.IO;
 import infovis.gui.*;
 import prefuse.data.Table;
 import prefuse.data.expression.Predicate;

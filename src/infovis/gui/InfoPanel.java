@@ -12,6 +12,8 @@ package infovis.gui;
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * Displays information relating to some entity
@@ -40,6 +42,16 @@ public class InfoPanel extends JPanel {
             txtPanel.add(txtfield);
             this.add(txtPanel);
         }
+        JButton btnApply = new JButton("Apply");
+        btnApply.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Clicked");
+                //To change body of implemented methods use File | Settings | File Templates.
+            }
+        });
+        this.add(btnApply);
+
         //this.setLayout(new GridLayout());
     }
 
