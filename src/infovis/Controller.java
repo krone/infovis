@@ -10,6 +10,7 @@ import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.io.Console;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -32,15 +33,36 @@ public class Controller {
 
 
     private static Controller _instance = null;
+    private String m_frmTime;
+    private String m_toTime;
+
+    private Controller() { }
 
     public static Controller getInstance()
     {
         if (_instance == null)
         {
+            System.out.println("NEW CONTROLLER");
             _instance = new Controller();
         }
         return _instance;
     }
+
+
+    public void init()
+    {
+        initGui();
+
+        // set data to the vis panel
+        GuiFactory.getVisPanel().setData(new Table());
+        GuiFactory.getVisPanel().render();
+
+        setActions();
+
+        GuiFactory.getDateSlider().slider.setValue(1);
+
+    }
+
 
     private WeatherModel queryWeatherByDate(String date)
     {
@@ -81,10 +103,6 @@ public class Controller {
             i++;
         }
 
-        System.out.println(filters);
-
-
-
         String query = "SELECT bl.x,bl.y, q0.CLR\n" +
                 "FROM(SELECT NULL AS X) x\n" +
                 "JOIN(" + filters +
@@ -97,65 +115,7 @@ public class Controller {
                 "WHERE 1=1\n" +
                 ";";
 
-        String queryold = "SELECT bl.x,bl.y, q0.CLR\n" +
-                "FROM(SELECT NULL AS X) x\n" +
-                "JOIN(SELECT 'yellow' CLR, to_tsquery('flu | cough | sick')     QRY UNION\n" +
-                "         SELECT 'red'    CLR, to_tsquery('crash')              QRY UNION\n" +
-                "         SELECT 'green'  CLR, to_tsquery('foo')                QRY) q0 ON 1=1\n" +
-                "JOIN blogs bl ON 1=1\n" +
-                "\n" +
-                "AND bl.\"Created_at\" BETWEEN '"+fromTime+"' AND '"+toTime+"'\n" +
-                "AND bl.textsearchable_index_col @@ q0.QRY\n" +
-                "WHERE 1=1\n" +
-                ";";
-
-
-        System.out.println(query);
-
-
         Table data = DB.query(query);
-        System.out.println(data.isValidRow(1));
-        return data;
-    }
-
-
-
-    private Table queryData(ArrayList<String> terms, Date fromTime, Date toTime)
-    {
-        String query = "SELECT bl.x,bl.y, q0.CLR\n" +
-                "FROM(SELECT NULL AS X) x\n" +
-                "JOIN(SELECT 'yellow' CLR, to_tsquery('flu | cough | sick')     QRY UNION\n" +
-                "         SELECT 'red'    CLR, to_tsquery('crash')              QRY UNION\n" +
-                "         SELECT 'green'  CLR, to_tsquery('foo')                QRY) q0 ON 1=1\n" +
-                "JOIN blogs bl ON 1=1\n" +
-                "\n" +
-                "AND bl.\"Created_at\" BETWEEN '2011-05-18 09:00:00' AND '2011-05-19 08:59:59'\n" +
-                "AND bl.textsearchable_index_col @@ q0.QRY\n" +
-                "WHERE 1=1\n" +
-                ";";
-
-
-        //'2011-05-19 08:59:59'
-
-
-        Calendar c = new GregorianCalendar();
-        c.set(2011, 3, 30, 0, 0, 1);
-
-        DateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd H:00:s");
-        System.out.println(formatter.format(c.getTime()));
-
-
-        java.sql.Date d = new Date(c.getTimeInMillis());
-        d.toString();
-
-
-
-        System.out.println(d.toString());
-
-        c.set(2011, 3, 30, 12, 0, 0);
-
-        Table data = DB.query(query);
-        System.out.println(data.isValidRow(1));
         return data;
     }
 
@@ -172,37 +132,21 @@ public class Controller {
     }
 
 
-    private Controller() {
-
-
-        initGui();
-
-        Table data = queryData(null, null, null);
-
-        // set data to the vis panel
-        GuiFactory.getVisPanel().setData(data);
-        GuiFactory.getVisPanel().render();
-
-        setActions();
-    }
-
     /**
      * Initialises gui components
      */
     private void initGui() {
-        System.out.println("init Gui");
+        System.out.println("init GUi");
         MainWindow frame = GuiFactory.getMainWindow();
         WeatherPanel weatherPanel = new WeatherPanel();
 
         // set the current weather pane
         GuiFactory.getVisPanel().setWeatherPanel(weatherPanel);
-
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, GuiFactory.getInfoPanel(), GuiFactory.getVisPanel());
 
-        GuiFactory.getInfoPanel().add(new WeatherPanel());
 
         split.setOneTouchExpandable(true);
-        split.setDividerLocation(150);
+        split.setDividerLocation(200);
 
         Dimension minimumSize = new Dimension(100, 50);
         weatherPanel.setMinimumSize(minimumSize);
@@ -213,22 +157,17 @@ public class Controller {
 
         frame.pack();
         frame.setVisible(true);
-
-
-
     }
 
 
     /**
      * Called to apply new set of filters to the dataset
-     * @param _filters
+     *
      */
-    public void filtersChangedUpdateData(Map<Color, String> _filters)
+    public void filtersChangedUpdateData()
     {
-
+        updateVisNewData();
     }
-
-
 
     /**
      * Set all listeners and their actions
@@ -238,21 +177,23 @@ public class Controller {
 
     }
 
-    public void updateGuiToNewDateTime(DateSlider dateSlider, int dateSliderPosition)
+    public void updateWeather()
     {
-        String toTime = dateSlider.strDateTimes.get(dateSliderPosition);
-        String frmTime = dateSlider.strDateTimes.get(dateSliderPosition-1);
-
-        Table data = Controller.getInstance().queryDataWithStrDates(GuiFactory.getInfoPanel().m_filters, frmTime, toTime);
-        GuiFactory.getVisPanel().updateData(data);
-
-        String[] t = toTime.split(" ");
-
         // update weather
+        String[] t = m_toTime.split(" ");
         WeatherModel weather = queryWeatherByDate(t[0]);
 
-        GuiFactory.getVisPanel().updateWeather(weather.weather);
-        GuiFactory.getVisPanel().repaint();
+        if(weather!=null)
+        {
+            GuiFactory.getVisPanel().updateWeather(weather.weather);
+        }
+    }
+
+    public void updateVisNewData()
+    {
+        Table data = Controller.getInstance().queryDataWithStrDates(GuiFactory.getInfoPanel().getFilters(), m_frmTime, m_toTime);
+        GuiFactory.getVisPanel().updateData(data);
+
     }
 
 
@@ -260,27 +201,22 @@ public class Controller {
 
         public void stateChanged(ChangeEvent changeEvent)
         {
+            System.out.println("DATE SLIDER CHANGE CALLED");
             Object source = changeEvent.getSource();
 
             if (source instanceof JSlider) {
                 JSlider theJSlider = (JSlider) source;
                 if (!theJSlider.getValueIsAdjusting()) {
 
-                    updateGuiToNewDateTime(GuiFactory.getDateSlider(), theJSlider.getValue());
+                    m_toTime = GuiFactory.getDateSlider().strDateTimes.get(theJSlider.getValue());
 
-                    /*String toTime = GuiFactory.getDateSlider().strDateTimes.get(theJSlider.getValue());
-                    String frmTime = GuiFactory.getDateSlider().strDateTimes.get(theJSlider.getValue()-1);
+                    System.out.println(m_toTime);
 
-                    Table data = Controller.getInstance().queryDataWithStrDates(GuiFactory.getInfoPanel().m_filters, frmTime, toTime);
-                    GuiFactory.getVisPanel().updateData(data);
+                    m_frmTime = GuiFactory.getDateSlider().strDateTimes.get(theJSlider.getValue()-1);
 
-                    String[] t = toTime.split(" ");
+                    updateVisNewData();
+                    updateWeather();
 
-                    // update weather
-                    WeatherModel weather = queryWeatherByDate(t[0]);
-
-                    GuiFactory.getVisPanel().updateWeather(weather.weather);
-                    GuiFactory.getVisPanel().repaint(); */
                 }
             } else {
                 System.out.println("Something changed: " + source);

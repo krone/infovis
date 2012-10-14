@@ -2,16 +2,20 @@ package infovis.gui;
 
 import infovis.data.IO;
 import infovis.models.WeatherModel;
+import prefuse.action.ActionList;
 import prefuse.data.Table;
 import prefuse.data.Tuple;
 
 import javax.swing.*;
 import javax.swing.event.ChangeListener;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import javax.swing.Timer;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,25 +27,23 @@ import java.util.*;
 
 public class DateSlider extends JPanel{
 
-    private JSlider slider;
+    public JSlider slider;
     private ArrayList<WeatherModel> dates;
+    protected boolean isPlay = true;
 
     public ArrayList<String> strDateTimes;
 
     public DateSlider()
     {
-
         Hashtable labelTable = new Hashtable();
         dates = new ArrayList<WeatherModel>();
         strDateTimes = new ArrayList<String>();
 
         DateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd H:00:s");
-
         DateFormat displayformatter =  new SimpleDateFormat("dd/MM");
 
         Calendar start = new GregorianCalendar();
         start.set(2011, 3, 30, 0, 0, 1);  // start time
-
 
         Calendar end = new GregorianCalendar();
         end.set(2011, 4, 22, 23, 59, 59);  // start time
@@ -53,36 +55,33 @@ public class DateSlider extends JPanel{
         int c = 0;
         while(current.getTimeInMillis()  < end.getTimeInMillis())
         {
-             current.add(Calendar.HOUR, 6);
             JLabel lbl;
-
-            if(c%6==0)
+            if(c%48==0)
             {
                 lbl = new JLabel(displayformatter.format(current.getTime()));
             }
             else{
                 lbl = new JLabel(" ");
             }
-
-
             labelTable.put(c, lbl);
 
             strDateTimes.add(formatter.format(current.getTime()));
             System.out.println(formatter.format(current.getTime()));
+
+            current.add(Calendar.HOUR, 2);
+
             c++;
         }
 
 
-        Table data = IO.readCsv("data/Weather.csv");
+        /*Table data = IO.readCsv("data/Weather.csv");
         Iterator itr = data.tuples();
 
         c = 0;
         while(itr.hasNext())
         {
             Tuple el = (Tuple)itr.next();
-
             //labelTable.put(c, new JLabel(el.getString("Date")));
-
             WeatherModel model = new WeatherModel();
             model.date =  el.getDate("Date");
             model.weather = el.getString("Weather");
@@ -90,61 +89,86 @@ public class DateSlider extends JPanel{
             model.windDirection = el.getString("Wind_Direction");
             dates.add(model);
             c++;
-        }
+        } */
 
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(500, 50));
 
-        slider = new JSlider(JSlider.HORIZONTAL, 0, 83, 0);
-        slider.setMinorTickSpacing(1);
-        slider.setMajorTickSpacing(4);
+        slider = new JSlider(JSlider.HORIZONTAL, 0, 264, 0);
+        slider.setMinorTickSpacing(2);
+        slider.setMajorTickSpacing(12);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setLabelTable(labelTable);
         slider.setPaintLabels(true);
 
-        add(slider, BorderLayout.NORTH);
+
+
+        JToggleButton btnPLay = new JToggleButton();
+        btnPLay.setSelected(false);
+        btnPLay.setSize(100, 40);
+        btnPLay.setIcon(new ImageIcon("data/images/media-playback-start.png"));
+        btnPLay.addActionListener(new PlayButtonClicked());
+        add(btnPLay, BorderLayout.WEST);
+
+        add(slider, BorderLayout.CENTER);
     }
 
 
+    private class PlayButtonClicked implements ActionListener{
 
-    public void DateSlider_t()
-    {
-        Table data = IO.readCsv("data/Weather.csv");
-        Iterator itr = data.tuples();
+        private int DELAY = 50;
 
-        Hashtable labelTable = new Hashtable();
-        dates = new ArrayList<WeatherModel>();
-
-        int c = 0;
-        while(itr.hasNext())
+        public class AnimateAction implements ActionListener
         {
-            Tuple el = (Tuple)itr.next();
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int currentVal = slider.getValue();
 
-            labelTable.put(c, new JLabel(el.getString("Date")));
+                if(currentVal<slider.getMaximum())
+                {
+                    slider.setValue(slider.getValue()+1);
+                }
+            }
+        };
 
-            WeatherModel model = new WeatherModel();
-            model.date =  el.getDate("Date");
-            model.weather = el.getString("Weather");
-            model.averageWindSpeed = el.getInt("Average_Wind_Speed");
-            model.windDirection = el.getString("Wind_Direction");
-            dates.add(model);
-            c++;
+        private Timer m_timer;
+
+        public PlayButtonClicked()
+        {
 
         }
-        setLayout(new BorderLayout());
-        setPreferredSize(new Dimension(500, 50));
+        @Override
+        public void actionPerformed(ActionEvent e) {
 
-        slider = new JSlider(JSlider.HORIZONTAL, 0, 20, 0);
-        slider.setMinorTickSpacing(1);
-        slider.setMajorTickSpacing(2);
-        slider.setPaintTicks(true);
-        slider.setPaintLabels(true);
-        slider.setLabelTable(labelTable);
-        slider.setPaintLabels(true);
+            JToggleButton btn = null;
+            if(e.getSource() instanceof JToggleButton)
+            {
+                btn = (JToggleButton)e.getSource();
+            }
+            if(btn==null) return;
 
-        add(slider, BorderLayout.NORTH);
+            if(isPlay)
+            {
+                m_timer = new Timer(100, new AnimateAction());
+                btn.setIcon(new ImageIcon("data/images/media-playback-pause.png"));
+                isPlay = false;
+                m_timer.start();
+                int currentVal = slider.getValue();
+                if(currentVal>=slider.getMaximum())
+                {
+                    m_timer.stop();
+                }
+            }
+            else{
+                // set to play as next action
+                btn.setIcon(new ImageIcon("data/images/media-playback-start.png"));
+                isPlay = true;
+                m_timer.stop();
+            }
+        }
     }
+
 
     public ArrayList<WeatherModel> getDates()
     {

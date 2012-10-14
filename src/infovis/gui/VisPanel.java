@@ -33,7 +33,7 @@ public class VisPanel extends JLayeredPane implements MouseListener
      */
     public VisPanel()
     {
-
+      System.out.println("CREATD NEW VIS PANEL");
     }
 
     public void updateData(Table data)
@@ -47,7 +47,6 @@ public class VisPanel extends JLayeredPane implements MouseListener
     public void setData(Table data)
     {
         _sp = new ScatterPlot(data, "x", "y");
-
         _sp.setPointSize(5);
         _sp.setSize(1826, 929);
         this.setSize(1826, 929);
@@ -86,6 +85,7 @@ public class VisPanel extends JLayeredPane implements MouseListener
     public void updateWeather(String weather)
     {
         m_w.setCurrent(weather);
+        repaint();
     }
 
     @Override

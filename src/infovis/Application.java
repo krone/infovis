@@ -10,9 +10,11 @@ package infovis;
  */
 public class Application {
 
+    private static Controller ctr = Controller.getInstance();
+
     public static void main(String[] args)
     {
-        Controller.getInstance();
+        ctr.init();
     }
 
 }

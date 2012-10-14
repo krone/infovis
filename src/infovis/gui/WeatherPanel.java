@@ -57,7 +57,7 @@ public class WeatherPanel extends JComponent {
         Image img = m_images.get(current);
         if(img!=null)
         {
-            System.out.println("drawing image");
+
             g2.drawImage(img, 0, 0, this);
         }
     }

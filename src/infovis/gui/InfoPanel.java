@@ -29,23 +29,25 @@ public class InfoPanel extends JPanel {
     private  JTextField[] txtFields = new JTextField[9];
 
     Color[] colours = {Color.red, Color.orange, Color.yellow, Color.green, Color.cyan, Color.blue, Color.magenta, Color.pink, Color.white };
-    public  Map<Color, String> m_filters = new HashMap<Color, String>();
+    private  Map<Color, String> m_filters = new HashMap<Color, String>();
 
     public InfoPanel()
     {
         setSize(120, 800);
         setBackground(Color.DARK_GRAY);
-        JLabel label = new JLabel("Filters");
+        JLabel label = new JLabel("Term Filters");
+        label.setSize(200, 30);
+        this.setLayout(new GridLayout(20, 1));
 
         this.add(label);
 
-        String[] filters = {"flu | cough | sick", "truck | accident | crash"};
+        String[] filters = {"flu | cough | sick", "accident | crash", "chills | sweats | nausea | deadful", "truck", "diarrhea | vomiting | lymph"};
 
         for(int i = 0; i<9; i++)
         {
             JPanel txtPanel = new JPanel();
             txtPanel.setBackground(colours[i]);
-            txtPanel.setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.black));
+            txtPanel.setBorder(BorderFactory.createMatteBorder(3,3,3,3,Color.darkGray));
             txtPanel.setSize(120, 40);
 
             txtFields[i] = new JTextField(15);
@@ -55,6 +57,11 @@ public class InfoPanel extends JPanel {
             }
 
             txtFields[i].setBorder(javax.swing.BorderFactory.createEmptyBorder());
+
+            txtFields[i].setBorder(BorderFactory.createCompoundBorder(
+                    txtFields[i].getBorder(),
+                    BorderFactory.createEmptyBorder(5, 5, 5, 5)));
+
 
             txtPanel.add(txtFields[i]);
             add(txtPanel);
@@ -81,15 +88,24 @@ public class InfoPanel extends JPanel {
         }
     }
 
+
+    /**
+     * Returns hashmap of colours with corresponding predicates in a string = x | y | z
+     * @return
+     */
+    public Map<Color, String> getFilters()
+    {
+        return m_filters;
+    }
+
+
     private class ApplyButtonClicked implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
 
             initFiltersMap();
-
-            // send the info to controller to action
-            Controller.getInstance().filtersChangedUpdateData(m_filters);
+            Controller.getInstance().filtersChangedUpdateData();
         }
     }
 
