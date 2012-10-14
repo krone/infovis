@@ -39,11 +39,11 @@ public class DateSlider extends JPanel{
         dates = new ArrayList<WeatherModel>();
         strDateTimes = new ArrayList<String>();
 
-        DateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd H:00:s");
+        DateFormat formatter =  new SimpleDateFormat("yyyy-MM-dd HH:00:s");
         DateFormat displayformatter =  new SimpleDateFormat("dd/MM");
 
         Calendar start = new GregorianCalendar();
-        start.set(2011, 3, 30, 0, 0, 1);  // start time
+        start.set(2011, 3, 30, 0, 0, 0);  // start time
 
         Calendar end = new GregorianCalendar();
         end.set(2011, 4, 22, 23, 59, 59);  // start time
@@ -72,25 +72,6 @@ public class DateSlider extends JPanel{
 
             c++;
         }
-
-
-        /*Table data = IO.readCsv("data/Weather.csv");
-        Iterator itr = data.tuples();
-
-        c = 0;
-        while(itr.hasNext())
-        {
-            Tuple el = (Tuple)itr.next();
-            //labelTable.put(c, new JLabel(el.getString("Date")));
-            WeatherModel model = new WeatherModel();
-            model.date =  el.getDate("Date");
-            model.weather = el.getString("Weather");
-            model.averageWindSpeed = el.getInt("Average_Wind_Speed");
-            model.windDirection = el.getString("Wind_Direction");
-            dates.add(model);
-            c++;
-        } */
-
         setLayout(new BorderLayout());
         setPreferredSize(new Dimension(500, 50));
 

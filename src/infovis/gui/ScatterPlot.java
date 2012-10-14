@@ -27,9 +27,7 @@ import prefuse.action.RepaintAction;
 import prefuse.action.assignment.*;
 import prefuse.action.layout.AxisLayout;
 import prefuse.action.layout.Layout;
-import prefuse.controls.PanControl;
-import prefuse.controls.ToolTipControl;
-import prefuse.controls.ZoomControl;
+import prefuse.controls.*;
 import prefuse.data.Schema;
 import prefuse.data.Table;
 import prefuse.data.expression.Predicate;
@@ -123,7 +121,8 @@ public class ScatterPlot extends Display{
         Color[] coloursList = {Color.red, Color.orange, Color.yellow, Color.green, Color.cyan, Color.blue, Color.magenta, Color.pink, Color.white };
         for(Color c:coloursList)
         {
-            addColor((Predicate)ExpressionParser.parse("clr = '"+String.valueOf(c.getRGB())+"'"), ColorLib.rgb(c.getRed(), c.getGreen(), c.getBlue()));
+            int v = ColorLib.setAlpha(ColorLib.rgb(c.getRed(), c.getGreen(), c.getBlue()), 255);
+            addColor((Predicate)ExpressionParser.parse("clr = '"+String.valueOf(c.getRGB())+"'"), v);
         }
 
         ShapeAction shape = new ShapeAction(group, Constants.SHAPE_ELLIPSE);
@@ -148,10 +147,13 @@ public class ScatterPlot extends Display{
         setSize(1826,929);
         setHighQuality(true);
         setBackgroundImage("data/Vastopolis_Map_small.jpg", false, false);
+        setBackground(Color.black);
 
         // add movement controls
-        addControlListener(new ZoomControl());
-        addControlListener(new PanControl());
+        //ZoomControl z = new ZoomControl();
+        m_vis.getDisplay(0).addControlListener(new WheelZoomControl());
+
+        //addControlListener(new PanControl());
 
         ToolTipControl ttc = new ToolTipControl(new String[] {xfield,yfield,sfield});
         //BetterTooltipControl ttc = new BetterTooltipControl("URL=%s,Size=%s,Links=%s",new String[] {xfield,yfield,sfield});

@@ -3,6 +3,7 @@ package infovis.gui;
 import prefuse.data.Table;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
@@ -26,6 +27,7 @@ public class VisPanel extends JLayeredPane implements MouseListener
     private ScatterPlot _sp;
     private ArrayList<Predicate> _predicates = new ArrayList<Predicate>();
     private WeatherPanel m_w;
+    private JLabel m_timeLabel = new JLabel();
     /**
      * Takes in prefuse Table
      * and renders the visualisation
@@ -33,8 +35,28 @@ public class VisPanel extends JLayeredPane implements MouseListener
      */
     public VisPanel()
     {
-      System.out.println("CREATD NEW VIS PANEL");
+        System.out.println("CREATD NEW VIS PANEL");
+
+
+        m_timeLabel.setText("TESTING");
+        m_timeLabel.setForeground(Color.white);
+        m_timeLabel.setFont(new Font("Serif", Font.BOLD, 14));
+
+
+        setLayer(m_timeLabel, 90);
+
+        m_timeLabel.setBounds(900, 8, 400, 50);
+        this.add(m_timeLabel, new Integer(20));
+
     }
+
+
+    public void updateText(String txt)
+    {
+        m_timeLabel.setText(txt);
+        m_timeLabel.repaint();
+    }
+
 
     public void updateData(Table data)
     {
@@ -47,7 +69,7 @@ public class VisPanel extends JLayeredPane implements MouseListener
     public void setData(Table data)
     {
         _sp = new ScatterPlot(data, "x", "y");
-        _sp.setPointSize(5);
+        _sp.setPointSize(7);
         _sp.setSize(1826, 929);
         this.setSize(1826, 929);
     }
@@ -72,7 +94,7 @@ public class VisPanel extends JLayeredPane implements MouseListener
     }
     public void setWeatherPanel(WeatherPanel w)
     {
-        this.add(w, 100);
+        add(w, 100);
         m_w = w;
         w.repaint();
     }

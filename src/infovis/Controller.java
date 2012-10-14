@@ -92,9 +92,7 @@ public class Controller {
         {
             String str = terms.get(c);
             String colour = String.valueOf(c.getRGB());
-
             String sql =  "SELECT '"+colour+"' CLR, to_tsquery('"+str+"') QRY ";
-
             if(i < terms.size()-1)
             {
                 sql+=" UNION ";
@@ -216,6 +214,8 @@ public class Controller {
 
                     updateVisNewData();
                     updateWeather();
+
+                    GuiFactory.getVisPanel().updateText(m_frmTime+" : "+m_toTime);
 
                 }
             } else {
