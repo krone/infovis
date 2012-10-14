@@ -50,10 +50,8 @@ public class WeatherPanel extends JComponent {
     @Override
     public void paintComponent ( Graphics g )
     {
-
         super.paintComponent(g);
         Graphics2D g2 = (Graphics2D) g;
-
         Image img = m_images.get(current);
         if(img!=null)
         {

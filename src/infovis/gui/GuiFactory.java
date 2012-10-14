@@ -28,6 +28,9 @@ public class GuiFactory {
     {
         return  m_vis;
     }
+
+
+
     public static MainWindow getMainWindow()
     {
         return  m_window;

@@ -1,5 +1,6 @@
 package infovis.gui;
 
+import infovis.models.WeatherModel;
 import prefuse.data.Table;
 
 import javax.swing.*;
@@ -27,6 +28,8 @@ public class VisPanel extends JLayeredPane implements MouseListener
     private ScatterPlot _sp;
     private ArrayList<Predicate> _predicates = new ArrayList<Predicate>();
     private WeatherPanel m_w;
+    private WindPanel m_wind;
+
     private JLabel m_timeLabel = new JLabel();
     /**
      * Takes in prefuse Table
@@ -35,16 +38,9 @@ public class VisPanel extends JLayeredPane implements MouseListener
      */
     public VisPanel()
     {
-        System.out.println("CREATD NEW VIS PANEL");
-
-
-        m_timeLabel.setText("TESTING");
         m_timeLabel.setForeground(Color.white);
         m_timeLabel.setFont(new Font("Serif", Font.BOLD, 14));
-
-
         setLayer(m_timeLabel, 90);
-
         m_timeLabel.setBounds(900, 8, 400, 50);
         this.add(m_timeLabel, new Integer(20));
 
@@ -73,6 +69,7 @@ public class VisPanel extends JLayeredPane implements MouseListener
         _sp.setSize(1826, 929);
         this.setSize(1826, 929);
     }
+
     public void addPredicate(Predicate p)
     {
         _predicates.add(p);
@@ -98,15 +95,32 @@ public class VisPanel extends JLayeredPane implements MouseListener
         m_w = w;
         w.repaint();
     }
+
+
+    public void setWindPanel(WindPanel w)
+    {
+        add(w, 120);
+        m_wind = w;
+        w.repaint();
+    }
+
+    public WindPanel getWindPanel()
+    {
+        return m_wind;
+    }
+
+
     public WeatherPanel getWeatherPanel()
     {
         return m_w;
     }
 
 
-    public void updateWeather(String weather)
+    public void updateWeather(WeatherModel weather)
     {
-        m_w.setCurrent(weather);
+        System.out.println(weather.windDirection);
+        m_w.setCurrent(weather.weather);
+        m_wind.setCurrent(weather.windDirection.trim());
         repaint();
     }
 

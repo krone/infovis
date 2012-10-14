@@ -56,7 +56,7 @@ public class DateSlider extends JPanel{
         while(current.getTimeInMillis()  < end.getTimeInMillis())
         {
             JLabel lbl;
-            if(c%48==0)
+            if(c%12==0)
             {
                 lbl = new JLabel(displayformatter.format(current.getTime()));
             }
@@ -76,8 +76,8 @@ public class DateSlider extends JPanel{
         setPreferredSize(new Dimension(500, 50));
 
         slider = new JSlider(JSlider.HORIZONTAL, 0, 264, 0);
-        slider.setMinorTickSpacing(2);
-        slider.setMajorTickSpacing(12);
+        slider.setMinorTickSpacing(1);
+        slider.setMajorTickSpacing(6);
         slider.setPaintTicks(true);
         slider.setPaintLabels(true);
         slider.setLabelTable(labelTable);

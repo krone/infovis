@@ -138,8 +138,12 @@ public class Controller {
         MainWindow frame = GuiFactory.getMainWindow();
         WeatherPanel weatherPanel = new WeatherPanel();
 
+        WindPanel windPanel = new WindPanel();
+
+
         // set the current weather pane
         GuiFactory.getVisPanel().setWeatherPanel(weatherPanel);
+        GuiFactory.getVisPanel().setWindPanel(windPanel);
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, GuiFactory.getInfoPanel(), GuiFactory.getVisPanel());
 
 
@@ -183,7 +187,7 @@ public class Controller {
 
         if(weather!=null)
         {
-            GuiFactory.getVisPanel().updateWeather(weather.weather);
+            GuiFactory.getVisPanel().updateWeather(weather);
         }
     }
 
@@ -214,6 +218,7 @@ public class Controller {
 
                     updateVisNewData();
                     updateWeather();
+
 
                     GuiFactory.getVisPanel().updateText(m_frmTime+" : "+m_toTime);
 
