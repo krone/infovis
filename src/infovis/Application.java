@@ -1,23 +1,5 @@
 package infovis;
 
-import infovis.gui.DateSlider;
-import infovis.gui.ScatterPlot;
-import infovis.gui.VisPanel;
-
-import infovis.gui.WeatherArrow;
-import prefuse.data.Table;
-import prefuse.data.Tuple;
-import prefuse.data.expression.AndPredicate;
-import prefuse.data.expression.Predicate;
-import prefuse.data.expression.parser.ExpressionParser;
-
-
-import javax.imageio.ImageIO;
-import javax.swing.*;
-
-import java.awt.*;
-
-
 
 /**
  * Created with IntelliJ IDEA.

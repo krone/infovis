@@ -1,20 +1,15 @@
 package infovis;
 import infovis.data.DB;
-import infovis.data.IO;
 import infovis.gui.*;
-import prefuse.action.ActionList;
+import infovis.models.WeatherModel;
 import prefuse.data.Table;
-import prefuse.data.expression.Predicate;
-import prefuse.data.expression.parser.ExpressionParser;
+import prefuse.data.Tuple;
 import sun.reflect.generics.reflectiveObjects.NotImplementedException;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.tools.JavaCompiler;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -45,6 +40,24 @@ public class Controller {
             _instance = new Controller();
         }
         return _instance;
+    }
+
+    private WeatherModel queryWeatherByDate(String date)
+    {
+        Table data = DB.query("select * from weather where \"Date\" = '"+date+"';");
+        Iterator itr = data.tuples();
+        if(itr.hasNext())
+        {
+            Tuple el = (Tuple)itr.next();
+            WeatherModel weather = new WeatherModel();
+
+            weather.averageWindSpeed = Integer.parseInt(el.getString("Average_Wind_Speed"));
+            weather.date = el.getDate("Date");
+            weather.windDirection = el.getString("Wind_Direction");
+            weather.weather = el.getString("Weather");
+            return weather;
+        }
+        return null;
     }
 
 
@@ -164,22 +177,11 @@ public class Controller {
 
         initGui();
 
-        //"2011-05-18 13:26:00"
-
-        // read in and preprocess data
-        //Table data = IO.readCsv("data/Microblogs.csv");
-
         Table data = queryData(null, null, null);
-
-        //data = IO.preprocessPosts(data, 1826, 929);
-        //String query = "createdDate = '5/13/2011' AND isSick = 1";
-        //Predicate myPredicate = (Predicate) ExpressionParser.parse(query);
 
         // set data to the vis panel
         GuiFactory.getVisPanel().setData(data);
-        //GuiFactory.getVisPanel().addPredicate(myPredicate);
         GuiFactory.getVisPanel().render();
-
 
         setActions();
     }
@@ -188,16 +190,22 @@ public class Controller {
      * Initialises gui components
      */
     private void initGui() {
+        System.out.println("init Gui");
         MainWindow frame = GuiFactory.getMainWindow();
-        WeatherArrow w = new WeatherArrow();
-        GuiFactory.getVisPanel().setWeatherPanel(w);
+        WeatherPanel weatherPanel = new WeatherPanel();
+
+        // set the current weather pane
+        GuiFactory.getVisPanel().setWeatherPanel(weatherPanel);
 
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, GuiFactory.getInfoPanel(), GuiFactory.getVisPanel());
+
+        GuiFactory.getInfoPanel().add(new WeatherPanel());
+
         split.setOneTouchExpandable(true);
         split.setDividerLocation(150);
 
         Dimension minimumSize = new Dimension(100, 50);
-        w.setMinimumSize(minimumSize);
+        weatherPanel.setMinimumSize(minimumSize);
         GuiFactory.getVisPanel().setMinimumSize(minimumSize);
 
         frame.getContentPane().add(GuiFactory.getDateSlider(), BorderLayout.NORTH);
@@ -205,6 +213,9 @@ public class Controller {
 
         frame.pack();
         frame.setVisible(true);
+
+
+
     }
 
 
@@ -227,29 +238,23 @@ public class Controller {
 
     }
 
-    /*private class DateSliderChanged implements ChangeListener {
+    public void updateGuiToNewDateTime(DateSlider dateSlider, int dateSliderPosition)
+    {
+        String toTime = dateSlider.strDateTimes.get(dateSliderPosition);
+        String frmTime = dateSlider.strDateTimes.get(dateSliderPosition-1);
 
-        public void stateChanged(ChangeEvent changeEvent)
-        {
-            Object source = changeEvent.getSource();
+        Table data = Controller.getInstance().queryDataWithStrDates(GuiFactory.getInfoPanel().m_filters, frmTime, toTime);
+        GuiFactory.getVisPanel().updateData(data);
 
-            if (source instanceof JSlider) {
-                JSlider theJSlider = (JSlider) source;
-                if (!theJSlider.getValueIsAdjusting()) {
+        String[] t = toTime.split(" ");
 
-                    String date = GuiFactory.getDateSlider().getDates().get(theJSlider.getValue()).getDateAsString();
-                    Predicate myPredicate = (Predicate) ExpressionParser.parse("createdDate = '" + date + "' AND isSick = 1");
+        // update weather
+        WeatherModel weather = queryWeatherByDate(t[0]);
 
-                    GuiFactory.getVisPanel().getWeatherPanel().setCurrent("W");
-                    GuiFactory.getVisPanel().getWeatherPanel().repaint();
-                    GuiFactory.getVisPanel().addPredicate(myPredicate);
-                    GuiFactory.getVisPanel().repaint();
-                }
-            } else {
-                System.out.println("Something changed: " + source);
-            }
-        }
-    } */
+        GuiFactory.getVisPanel().updateWeather(weather.weather);
+        GuiFactory.getVisPanel().repaint();
+    }
+
 
     private class DateSliderChanged implements ChangeListener {
 
@@ -261,18 +266,21 @@ public class Controller {
                 JSlider theJSlider = (JSlider) source;
                 if (!theJSlider.getValueIsAdjusting()) {
 
-                    String toTime = GuiFactory.getDateSlider().strDateTimes.get(theJSlider.getValue());
+                    updateGuiToNewDateTime(GuiFactory.getDateSlider(), theJSlider.getValue());
+
+                    /*String toTime = GuiFactory.getDateSlider().strDateTimes.get(theJSlider.getValue());
                     String frmTime = GuiFactory.getDateSlider().strDateTimes.get(theJSlider.getValue()-1);
 
                     Table data = Controller.getInstance().queryDataWithStrDates(GuiFactory.getInfoPanel().m_filters, frmTime, toTime);
                     GuiFactory.getVisPanel().updateData(data);
 
-                    /*GuiFactory.getVisPanel().getWeatherPanel().setCurrent("W");
-                    GuiFactory.getVisPanel().getWeatherPanel().repaint();
-                    GuiFactory.getVisPanel().addPredicate(myPredicate);*/
+                    String[] t = toTime.split(" ");
 
+                    // update weather
+                    WeatherModel weather = queryWeatherByDate(t[0]);
 
-                    GuiFactory.getVisPanel().repaint();
+                    GuiFactory.getVisPanel().updateWeather(weather.weather);
+                    GuiFactory.getVisPanel().repaint(); */
                 }
             } else {
                 System.out.println("Something changed: " + source);

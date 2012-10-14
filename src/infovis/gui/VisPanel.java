@@ -1,31 +1,13 @@
 package infovis.gui;
 
-import prefuse.Constants;
-import prefuse.Display;
-import prefuse.Visualization;
-import prefuse.action.ActionList;
-import prefuse.action.assignment.ColorAction;
-import prefuse.action.layout.AxisLayout;
-import prefuse.controls.Control;
-import prefuse.controls.ZoomControl;
 import prefuse.data.Table;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
-import infovis.gui.ScatterPlot;
 import prefuse.data.expression.Predicate;
-import prefuse.util.ColorLib;
-import prefuse.util.display.BackgroundPainter;
-import prefuse.visual.VisualItem;
-import prefuse.visual.expression.VisiblePredicate;
 
 /**
  * Created with IntelliJ IDEA.
@@ -39,11 +21,11 @@ import prefuse.visual.expression.VisiblePredicate;
 /**
  * Main Visualisation Panel
  */
-public class VisPanel extends JLayeredPane   implements MouseListener
+public class VisPanel extends JLayeredPane implements MouseListener
 {
     private ScatterPlot _sp;
     private ArrayList<Predicate> _predicates = new ArrayList<Predicate>();
-    private WeatherArrow m_w;
+    private WeatherPanel m_w;
     /**
      * Takes in prefuse Table
      * and renders the visualisation
@@ -51,7 +33,6 @@ public class VisPanel extends JLayeredPane   implements MouseListener
      */
     public VisPanel()
     {
-        //this.add(new WeatherArrow(), new Integer(10));
 
     }
 
@@ -90,14 +71,23 @@ public class VisPanel extends JLayeredPane   implements MouseListener
         }
 
     }
-    public void setWeatherPanel(WeatherArrow w)
+    public void setWeatherPanel(WeatherPanel w)
     {
+        this.add(w, 100);
         m_w = w;
+        w.repaint();
     }
-    public WeatherArrow getWeatherPanel()
+    public WeatherPanel getWeatherPanel()
     {
         return m_w;
     }
+
+
+    public void updateWeather(String weather)
+    {
+        m_w.setCurrent(weather);
+    }
+
     @Override
     public void mouseClicked(MouseEvent e) {
         System.out.println(e.getX());

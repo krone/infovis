@@ -33,7 +33,7 @@ public class InfoPanel extends JPanel {
 
     public InfoPanel()
     {
-        setSize(150, 800);
+        setSize(120, 800);
         setBackground(Color.DARK_GRAY);
         JLabel label = new JLabel("Filters");
 
