@@ -1,6 +1,7 @@
 package infovis;
 import infovis.data.DB;
 import infovis.gui.*;
+import infovis.gui.weather.Rain;
 import infovis.models.WeatherModel;
 import prefuse.data.Table;
 import prefuse.data.Tuple;
@@ -146,6 +147,11 @@ public class Controller {
         GuiFactory.getVisPanel().setWindPanel(windPanel);
         JSplitPane split = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, GuiFactory.getInfoPanel(), GuiFactory.getVisPanel());
 
+
+
+
+        GuiFactory.getVisPanel().add(GuiFactory.getRain(), 150);
+        //GuiFactory.getRain().start();
 
         split.setOneTouchExpandable(true);
         split.setDividerLocation(200);

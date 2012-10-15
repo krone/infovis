@@ -39,7 +39,7 @@ public class VisPanel extends JLayeredPane implements MouseListener
     public VisPanel()
     {
         m_timeLabel.setForeground(Color.white);
-        m_timeLabel.setFont(new Font("Serif", Font.BOLD, 14));
+        m_timeLabel.setFont(new Font("Arial", Font.BOLD, 14));
         setLayer(m_timeLabel, 90);
         m_timeLabel.setBounds(900, 8, 400, 50);
         this.add(m_timeLabel, new Integer(20));

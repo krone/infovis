@@ -98,7 +98,7 @@ public class DateSlider extends JPanel{
 
     private class PlayButtonClicked implements ActionListener{
 
-        private int DELAY = 50;
+        private int DELAY = 120;
 
         public class AnimateAction implements ActionListener
         {

@@ -10,6 +10,7 @@ package infovis.gui;
 
 
 import infovis.Controller;
+import infovis.gui.weather.Rain;
 
 import javax.swing.*;
 
@@ -22,6 +23,7 @@ public class GuiFactory {
     private static MainWindow m_window = new MainWindow();
     private static DateSlider m_dateslider = new DateSlider();
     private static InfoPanel m_info = new InfoPanel();
+    private static Rain m_rain = new Rain();
 
 
     public static VisPanel getVisPanel()
@@ -42,5 +44,10 @@ public class GuiFactory {
     public static InfoPanel getInfoPanel()
     {
         return  m_info;
+    }
+
+    public static Rain getRain()
+    {
+        return  m_rain;
     }
 }

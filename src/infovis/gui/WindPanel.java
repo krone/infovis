@@ -19,27 +19,12 @@ import java.util.Map;
  */
 public class WindPanel extends JComponent {
 
-
-    private Map<String, Double> m_cadrinals = new HashMap<String, Double>();
     private String m_current = "E";
     private Image m_image;
     double ninety = 1.57079633;
 
     public WindPanel()
     {
-
-
-        // set up images
-        m_cadrinals.put("E", 0.0);
-        m_cadrinals.put("S",ninety);
-        m_cadrinals.put("W", ninety*2);
-        m_cadrinals.put("N", ninety*3);
-        m_cadrinals.put("SE", ninety/2);
-
-        m_cadrinals.put("NW", ninety*3 - (ninety/2));
-        m_cadrinals.put("NNW", ninety/2);
-        m_cadrinals.put("WNW", ninety/2);
-
         this.setBounds(150, 0, 480, 480);
         //this.setBorder(new MatteBorder(2,2,2,2, Color.WHITE));
         m_image = Toolkit.getDefaultToolkit().getImage("data/images/E.png");
@@ -57,6 +42,8 @@ public class WindPanel extends JComponent {
         super.paintComponent(g);
 
         m_image = Toolkit.getDefaultToolkit().getImage("data/images/"+m_current+".png");
+        //Graphics2D g2 = (Graphics2D)g;
+        //g2.scale(100, 300);
         g.drawImage(m_image, 0, 0, this);
 
         /*Graphics2D g2d=(Graphics2D)g; // Create a Java2D version of g.

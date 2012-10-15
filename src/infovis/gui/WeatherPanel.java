@@ -43,6 +43,16 @@ public class WeatherPanel extends JComponent {
         current = c;
         System.out.println(current);
         currentDir+=90.0;
+
+
+        if(current.equals("rain"))
+        {
+
+            GuiFactory.getRain().start();
+        }
+        else{
+            GuiFactory.getRain().stopAndClear();
+        }
         //m_img = Toolkit.getDefaultToolkit().getImage("data/images/"+current+".png");
 
     }
